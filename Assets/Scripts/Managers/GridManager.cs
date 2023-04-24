@@ -7,13 +7,14 @@ using Random = UnityEngine.Random;
 
 public class GridManager : MonoBehaviour {
     public static GridManager Instance;
-    [SerializeField] private int _width, _height;
+    [SerializeField] public int _width;
+    [SerializeField] public int _height;
 
     [SerializeField] private Tile _floorTile, _wallTile;
 
     [SerializeField] private Transform _cam;
 
-    private Dictionary<Vector2, Tile> _tiles;
+    public Dictionary<Vector2, Tile> _tiles { get; private set; }
 
     void Awake() {
         Instance = this;
@@ -46,9 +47,9 @@ public class GridManager : MonoBehaviour {
         return _tiles.Where(t => t.Key.x < _width / 2 && t.Value.Walkable).OrderBy(t => Random.value).First().Value;
     }
 
-    public Tile GetEnemySpawnTile()
+    public Tile GetEnemySpawnTile(Dictionary<Tile, int> distMatrix)
     {
-        return _tiles.Where(t => t.Key.x > _width / 2 && t.Value.Walkable).OrderBy(t => Random.value).First().Value;
+        return _tiles.Where(t => t.Key.x > _width / 2 && t.Value.Walkable && distMatrix[t.Value] < int.MaxValue).OrderBy(t => Random.value).First().Value;
     }
 
     public Tile GetTileAtPosition(Vector2 pos)

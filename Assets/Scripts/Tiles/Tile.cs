@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class Tile : MonoBehaviour {
     public string TileName;
     [SerializeField] protected SpriteRenderer _renderer;
-    [SerializeField] private GameObject _highlight;
-    [SerializeField] private bool _isWalkable;
+    [SerializeField] private GameObject _highlight, _darklight;
+    [SerializeField] public bool _isWalkable { get; protected set; }
 
     public BaseUnit OccupiedUnit;
     public bool Walkable => _isWalkable && OccupiedUnit == null;
@@ -29,36 +29,17 @@ public abstract class Tile : MonoBehaviour {
         //MenuManager.Instance.ShowTileInfo(null);
     }
 
+    public void DarkLight(bool active)
+    {
+        _darklight.SetActive(active);
+    }
+   
     void OnMouseDown() {
         if(GameManager.Instance.GameState != GameState.PlayersTurn) return;
-        for (int i = 0; i < 4; ++i)
+        if (_darklight.activeSelf)
         {
-
-
-            if (OccupiedUnit != null)
-            {
-                if (OccupiedUnit.Faction == Faction.Character) UnitManager.Instance.SetSelectedCharacter((BaseCharacter)OccupiedUnit);
-                else
-                {
-                    if (UnitManager.Instance.SelectedCharacter != null)
-                    {
-                        var enemy = (BaseEnemy)OccupiedUnit;
-                        Destroy(enemy.gameObject);
-                        UnitManager.Instance.SetSelectedCharacter(null);
-                    }
-                }
-            }
-            else
-            {
-                if (UnitManager.Instance.SelectedCharacter != null)
-                {
-                    SetUnit(UnitManager.Instance.SelectedCharacter);
-                    UnitManager.Instance.SetSelectedCharacter(null);
-                }
-            }
+            UnitManager.Instance.Character.selectedTile = this;
         }
-        GameManager.Instance.ChangeState(GameState.EnemiesTurn);
-
     }
 
     public void SetUnit(BaseUnit unit) {
@@ -67,5 +48,11 @@ public abstract class Tile : MonoBehaviour {
         unit.transform.position = transform.position;
         OccupiedUnit = unit;
         unit.OccupiedTile = this;
+        
+    }
+
+    public Vector2 getPosition()
+    {
+        return transform.position;
     }
 }

@@ -7,8 +7,22 @@ public class BaseUnit : MonoBehaviour {
     public Tile OccupiedTile;
     public Faction Faction;
 
+    public int HP;
+    public int speed;
+
+    public int damage;
+    public int attackRange;
     public Vector3 GetCurrentPosition()
     {
-        return OccupiedTile.transform.position;
+        return OccupiedTile.getPosition();
     }
+
+    public virtual void TakeDamage(int damage)
+    {
+        HP -= damage;
+        if (HP <= 0)
+            Destroy(this.gameObject);
+    }
+
+    protected virtual void ChangeTurn() { }
 }

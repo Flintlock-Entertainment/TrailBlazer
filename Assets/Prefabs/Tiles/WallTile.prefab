@@ -69,6 +69,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59996e64a95c05647ac5ddf80e4d6c29, type: 3}
+--- !u!1 &582796272572894029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2888662129204218325, guid: 59996e64a95c05647ac5ddf80e4d6c29, type: 3}
+  m_PrefabInstance: {fileID: 2305866071383884440}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &3576373089604317536 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 1270508337323570168, guid: 59996e64a95c05647ac5ddf80e4d6c29, type: 3}
@@ -94,6 +99,7 @@ MonoBehaviour:
   TileName: 
   _renderer: {fileID: 3576373089604317536}
   _highlight: {fileID: 7446306048269915648}
+  _darklight: {fileID: 582796272572894029}
   _isWalkable: 0
   OccupiedUnit: {fileID: 0}
 --- !u!1 &7446306048269915648 stripped

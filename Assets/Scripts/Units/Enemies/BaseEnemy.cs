@@ -4,28 +4,42 @@ using UnityEngine;
 
 public class BaseEnemy : BaseUnit
 {
-    public virtual void EnemyTurn()
+    public virtual IEnumerator EnemyTurn()
     {
-        //Move();
-        //Attack();
+        yield return new WaitForSeconds(0.5f);
+        Move();
+        yield return new WaitForSeconds(0.5f);
     }
 
     protected void Move()
     {
-        var currentPosition = GetCurrentPosition();
-        currentPosition += new Vector3(Random.Range(-5, -5), Random.Range(-5, -5), 0);
-        GridManager.Instance.GetTileAtPosition((Vector2)currentPosition).SetUnit(this);
+        var path = BFS.GetShortestPath(OccupiedTile, UnitManager.Instance.Character.OccupiedTile);
+        if(path.Count <= attackRange){
+            Debug.Log("in range");
+            Attack();
+            return;
+        }
+        if(path.Count <= speed + 1)
+        {
+            Debug.Log("in moving range");
+            path.Last.Value.SetUnit(this);
+            Debug.Log(path.Last.Value);
+        }
+        else
+        {
+            Debug.Log("out of range");
+            Tile[] _path = new Tile[path.Count];
+            path.CopyTo(_path, 0);
+            _path[speed].SetUnit(this);
+        }
+        
     }
     protected void Attack()
     {
-        var currentPosition = GetCurrentPosition();
-        foreach (BaseCharacter character in UnitManager.Instance.Characters)
-        {
-            var characterPosition = character.GetCurrentPosition();
-            if (Mathf.Abs((float)(characterPosition.x -currentPosition.x)) + Mathf.Abs((float)(characterPosition.y - currentPosition.y)) > 10f)
-            {
-                Destroy(character);
-            }
-        }
+        UnitManager.Instance.Character.TakeDamage(damage);
+    }
+    protected override void ChangeTurn()
+    {
+        GameManager.Instance.ChangeState(GameState.PlayersTurn);
     }
 }

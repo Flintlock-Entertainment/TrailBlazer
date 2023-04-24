@@ -77,6 +77,7 @@ MonoBehaviour:
   TileName: 
   _renderer: {fileID: 5394746836674774464}
   _highlight: {fileID: 2029643679294071456}
+  _darklight: {fileID: 8316648595091177453}
   _isWalkable: 1
   OccupiedUnit: {fileID: 0}
   _baseColor: {r: 0.291, g: 0.18829781, b: 0.10737901, a: 1}
@@ -89,5 +90,10 @@ GameObject:
 --- !u!212 &5394746836674774464 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 1270508337323570168, guid: 59996e64a95c05647ac5ddf80e4d6c29, type: 3}
+  m_PrefabInstance: {fileID: 6592211246626272824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8316648595091177453 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2888662129204218325, guid: 59996e64a95c05647ac5ddf80e4d6c29, type: 3}
   m_PrefabInstance: {fileID: 6592211246626272824}
   m_PrefabAsset: {fileID: 0}
