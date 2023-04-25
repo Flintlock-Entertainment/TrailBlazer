@@ -9,7 +9,6 @@ public class BaseUnit : MonoBehaviour {
 
     public int HP;
     public int speed;
-
     public int damage;
     public int attackRange;
     public Vector3 GetCurrentPosition()
@@ -20,7 +19,8 @@ public class BaseUnit : MonoBehaviour {
     public virtual void TakeDamage(int damage)
     {
         HP -= damage;
-        if (HP <= 0)
+        bool alive = HP > 0;
+        if (!alive)
             Destroy(this.gameObject);
     }
 

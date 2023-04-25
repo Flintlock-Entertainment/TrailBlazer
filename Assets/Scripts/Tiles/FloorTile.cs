@@ -8,6 +8,7 @@ public class FloorTile : Tile
 
     public override void Init(int x, int y) {
         _isWalkable = true;
+        //A calculation to create a checkboard with altermanting colors.
         var isOffset = (x + y) % 2 == 1;
         _renderer.color = isOffset ? _offsetColor : _baseColor;
     }
