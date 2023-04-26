@@ -6,7 +6,8 @@ using UnityEngine;
 This is a base class for all tiles in the game.
 It contains various properties and methods that are common to all tiles.
 */
-public abstract class Tile : MonoBehaviour {
+public abstract class Tile : MonoBehaviour
+{
     // Name of the tile.
     public string TileName;
 
@@ -53,7 +54,7 @@ public abstract class Tile : MonoBehaviour {
     void OnMouseDown()
     {
         // Only allow player input during their turn.
-        if (GameManager.Instance.isPlayersTurn()) return;
+        if (!GameManager.Instance.isPlayersTurn()) return;
 
         // If the tile is currently darkened, select it.
         if (_darklight.activeSelf)
