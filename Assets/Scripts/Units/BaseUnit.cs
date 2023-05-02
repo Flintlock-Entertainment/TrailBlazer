@@ -8,10 +8,8 @@ public class BaseUnit : MonoBehaviour
     public Tile OccupiedTile;
     public Faction Faction;
 
-    public int HP;
-    public int speed;
-    public int damage;
-    public int attackRange;
+    public ScriptableUnit unitData;
+    public Inventory inventory;
     public Vector3 GetCurrentPosition()
     {
         return OccupiedTile.getPosition();
@@ -19,8 +17,8 @@ public class BaseUnit : MonoBehaviour
 
     public virtual void TakeDamage(int damage)
     {
-        HP -= damage;
-        bool alive = HP > 0;
+        unitData.HP -= damage;
+        bool alive = unitData.HP > 0;
         if (!alive)
             Destroy(this.gameObject);
     }

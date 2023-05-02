@@ -26,8 +26,7 @@ public class BaseCharacter : BaseUnit
     public void StrideAction()
     {
         // Check if it is the player's turn.
-        if (!GameManager.Instance.isPlayersTurn())
-            return;
+        if (!GameManager.Instance.isPlayersTurn()) return;
 
         // Get the distance matrix for the current tile and show tiles that are within the character's speed range.
         var distMatrix = BFS.GetDistanceMatrix(OccupiedTile);
@@ -65,8 +64,7 @@ public class BaseCharacter : BaseUnit
     public void AttackAction()
     {
         // Check if it is the player's turn.
-        if (!GameManager.Instance.isPlayersTurn())
-            return;
+        if (!GameManager.Instance.isPlayersTurn()) return;
 
         // Get the distance matrix for the current tile and show tiles that are within the character's attack range.
         var distMatrix = BFS.GetDistanceMatrix(OccupiedTile);

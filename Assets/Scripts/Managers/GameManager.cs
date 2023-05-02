@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Check if it is currently the enemy's turn
-    public bool isEnemyTurn()
+    public bool isEnemiesTurn()
     {
         return gameState == GameState.EnemiesTurn;
     }

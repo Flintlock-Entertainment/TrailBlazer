@@ -15,6 +15,9 @@ public class GridManager : MonoBehaviour
     [SerializeField] public int _width;
     [SerializeField] public int _height;
 
+    // GameObject used as parent to all spawned tiles
+    [SerializeField] private GameObject Tiles;
+
     // Floor and wall tiles to be used in the game grid, set in the Unity editor
     [SerializeField] private Tile _floorTile, _wallTile;
 
@@ -50,6 +53,9 @@ public class GridManager : MonoBehaviour
 
                 // Adds the spawned tile to the dictionary of tiles
                 _tiles[new Vector2(x, y)] = spawnedTile;
+
+                // Add the spawned tile under the Tiles GameObject
+                spawnedTile.transform.parent = Tiles.transform;
             }
         }
 
