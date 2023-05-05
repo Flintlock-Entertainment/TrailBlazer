@@ -18,6 +18,22 @@ public class Utils
     public static Func<int> d20 = GenerateDice(20);
     public static Func<int> d100 = GenerateDice(100);
 
+    public static OutCome CalculateOutCome(int roll, int DC)
+    {
+        switch (roll - DC)
+        {
+            case int n when n >= 10:
+                return OutCome.CritSuccess;
+            case int n when n >= 0:
+                return OutCome.Success;
+            case int n when n > -10:
+                return OutCome.Fail;
+            default:
+                return OutCome.CritFail;
+        }
+    }
+
+
 }
 
 public enum OutCome

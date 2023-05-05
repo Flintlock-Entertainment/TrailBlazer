@@ -14,29 +14,29 @@ public abstract class ScriptableWeapon : ScriptableItem
         DamageDice = Utils.GenerateDice(DiceNumber);
     }
 
-    public virtual int GetAttackRoll()
+    public virtual int GetAttackRoll(BaseUnit user)
     {
-        return Utils.d20();
+        return Utils.d20() + user.unitData.GetStat(Abilities.Strength) + user.unitData.GetWeaponProf() + GetMultipleAttackPenalty(user.numOfAttacks);
     }
-    public virtual int GetCritSuccessDamage()
+    public virtual int GetCritSuccessDamage(BaseUnit user)
     {
-        return DamageDice() + DamageDice();
+        return DamageDice() + DamageDice() + 2 * user.unitData.GetStat(Abilities.Strength);
     }
-    public virtual int GetSuccessDamage()
+    public virtual int GetSuccessDamage(BaseUnit user)
     {
-        return DamageDice();
+        return DamageDice() + user.unitData.GetStat(Abilities.Strength);
     }
-    public virtual int GetCritFailDamage()
+    public virtual int GetCritFailDamage(BaseUnit user)
     {
         return 0;
     }
-    public virtual int GetFailDamage()
+    public virtual int GetFailDamage(BaseUnit user)
     {
         return 0;
     }
     public virtual int GetMultipleAttackPenalty(int numOfAction)
     {
-        return (Mathf.Min(numOfAction, 3) - 1 )*5; 
+        return (Mathf.Min(numOfAction, 3) - 1 )*-5; 
     }
 
 }

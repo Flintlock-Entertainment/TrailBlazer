@@ -13,9 +13,6 @@ public class UnitManager : MonoBehaviour
     // This is a private list of ScriptableUnits.
     private List<ScriptableUnit> _units;
 
-    // This is a public field for the selected character.
-    public BaseCharacter SelectedCharacter;
-
     // This is a public field for the character.
     public BaseCharacter Character;
 
@@ -54,12 +51,9 @@ public class UnitManager : MonoBehaviour
             // Set the character on the spawn tile.
             randomSpawnTile.SetUnit(Character);
 
-            // Set the character's HP, speed, attack range, and damage.
-            Character.HP = 30;
-            Character.speed = 3;
-            Character.attackRange = 1;
-            Character.damage = 5;
-
+            // Set the character's HP and speed.
+            Character.unitData.HP = 30;
+            Character.unitData.Speed = 3;
             // Set up the menu for the character.
             MenuManager.Instance.setupMenu(Character);
         }
@@ -89,11 +83,9 @@ public class UnitManager : MonoBehaviour
             // Get a random spawn tile.
             var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile(distMatrix);
 
-            // Set the enemy's HP, speed, attack range, and damage.
-            spawnedEnemy.HP = 10;
-            spawnedEnemy.attackRange = 1;
-            spawnedEnemy.speed = 2;
-            spawnedEnemy.damage = 5;
+            // Set the enemy's HP ans speed.
+            spawnedEnemy.unitData.HP = 10;
+            spawnedEnemy.unitData.Speed = 2;
 
             // Set the enemy on the spawn tile.
             randomSpawnTile.SetUnit(spawnedEnemy);
@@ -104,6 +96,11 @@ public class UnitManager : MonoBehaviour
 
         // Change the game state to the player's turn.
         GameManager.Instance.ChangeState(GameState.PlayersTurn);
+    }
+
+    public void PlayerTurn()
+    {
+        Character.ResetTurn();
     }
 
     // This coroutine executes the turn of each enemy in the Enemies list.
@@ -123,11 +120,5 @@ public class UnitManager : MonoBehaviour
     private T GetRandomUnit<T>(Faction faction) where T : BaseUnit
     {
         return (T)_units.Where(u => u.Faction == faction).OrderBy(o => Random.value).First().UnitPrefab;
-    }
-
-    // This method sets the selected character to the specified character.
-    public void SetSelectedCharacter(BaseCharacter character)
-    {
-        SelectedCharacter = character; // Set the selected character to the specified character.
     }
 }

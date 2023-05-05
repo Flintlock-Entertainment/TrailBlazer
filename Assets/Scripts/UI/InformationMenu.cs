@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class Menu : MonoBehaviour
+public class InformationMenu : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI HPText;
     [SerializeField] public TextMeshProUGUI speedText;

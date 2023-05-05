@@ -10,7 +10,7 @@ public class MenuManager : MonoBehaviour
     public static MenuManager Instance;
 
     // This is a serialized field for Menu.
-    [SerializeField] private Menu _menu;
+    [SerializeField] private InformationMenu _menu;
 
     // This method is called when the script instance is being loaded.
     void Awake()
@@ -23,27 +23,13 @@ public class MenuManager : MonoBehaviour
     public void setupMenu(BaseCharacter character)
     {
         // Initialize the menu with the character's HP and speed.
-        _menu.init(character.HP, character.speed);
+        _menu.init(character.unitData.HP, character.unitData.Speed);
     }
 
     // This method is used to update the character's HP in the menu.
     public void UpdateMenu(BaseCharacter character)
     {
         // Update the character's HP in the menu.
-        _menu.ChangeHP(character.HP);
-    }
-
-    // This method is called when the player performs a stride action.
-    public void StrideAction()
-    {
-        // Call the StrideAction method of the character controlled by the UnitManager.
-        UnitManager.Instance.Character.StrideAction();
-    }
-
-    // This method is called when the player performs an attack action.
-    public void AttackAction()
-    {
-        // Call the AttackAction method of the character controlled by the UnitManager.
-        UnitManager.Instance.Character.AttackAction();
+        _menu.ChangeHP(character.unitData.HP);
     }
 }

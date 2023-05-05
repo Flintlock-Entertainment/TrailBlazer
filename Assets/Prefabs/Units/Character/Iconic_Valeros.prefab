@@ -100,3 +100,5 @@ MonoBehaviour:
   UnitName: 
   OccupiedTile: {fileID: 0}
   Faction: 0
+  unitData: {fileID: 11400000, guid: ec97c5b5ef1837644a163d79d9e58c5c, type: 2}
+  selectedTile: {fileID: 0}
