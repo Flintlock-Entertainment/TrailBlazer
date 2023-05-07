@@ -608,6 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Character: {fileID: 0}
   Enemies: []
+  _cam: {fileID: 519420032}
 --- !u!4 &370369662
 Transform:
   m_ObjectHideFlags: 0
@@ -1301,12 +1302,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 476a34bb9444f8346b23623e8ff5d90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 10
-  _height: 10
+  _width: 15
+  _height: 15
   Tiles: {fileID: 1259832232}
   _floorTile: {fileID: 9092181047610606664, guid: 27c4a5711568de647a6fa34025a2dfbc, type: 3}
   _wallTile: {fileID: -2487533986650817379, guid: dcead580b0295c843a4ae2cda38beb02, type: 3}
-  _cam: {fileID: 519420032}
 --- !u!1 &1435046216
 GameObject:
   m_ObjectHideFlags: 0

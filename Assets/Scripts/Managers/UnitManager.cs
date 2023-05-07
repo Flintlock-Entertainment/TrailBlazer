@@ -58,7 +58,6 @@ public class UnitManager : MonoBehaviour
         }
 
         _cam.transform.parent = Character.transform;
-
         // Change the game state to spawn enemies.
         GameManager.Instance.ChangeState(GameState.SpawnEnemies);
     }
