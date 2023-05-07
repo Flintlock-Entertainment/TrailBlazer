@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Weapon : Item
+public class WeaponLogic : ItemLogic
 {
-    public  ScriptableWeapon weaponData;
-
-
-    public override int Use(BaseEnemy user)
+    private static ScriptableWeapon weaponData;
+    public override int Use(BaseEnemy user, ScriptableItem itemData)
     {
+        weaponData = (ScriptableWeapon)itemData;
         // Get the distance matrix for the current tile and show tiles that are within the character's attack range.
         var distMatrix = BFS.GetDistanceMatrix(user.OccupiedTile);
         var tiles = distMatrix.Where(t => t.Value <= weaponData.GetRange());
@@ -22,30 +21,24 @@ public class Weapon : Item
                 break;
             }
         }
-        return weaponData.numOfActions;
+        return weaponData.GetNumOfActions();
     }
     /*
      * Perform the Attack action for the character.
      * Shows the tiles that the character can attack and waits for player input to select a tile.
      * Once a tile is selected, attacks any enemy units on the tile and ends the turn.
      */
-    public override int Use(BaseCharacter user)
+    public override int Use(BaseCharacter user, ScriptableItem itemData)
     {
+        weaponData = (ScriptableWeapon)itemData;
         // Get the distance matrix for the current tile and show tiles that are within the character's attack range.
         var distMatrix = BFS.GetDistanceMatrix(user.OccupiedTile);
         var tiles = distMatrix.Where(t => t.Value <= weaponData.GetRange());
-        foreach (var tile in tiles)
-        {
-            tile.Key.DarkLight(true);
-        }
-
-        // Reset the selected tile.
-        user.selectedTile = null;
-
+        user.ToggleDarkLightTiles(tiles, true);
         // Wait for player to select a tile and then attack any enemy units on the tile.
         StartCoroutine(user.WaitForPlayerToSelect(tiles, _AttackAction));
 
-        return weaponData.numOfActions;
+        return weaponData.GetNumOfActions();
     }
 
     /*
@@ -60,17 +53,12 @@ public class Weapon : Item
             var target = user.selectedTile.OccupiedUnit;
             Attack(user, target);
         }
-
-        // Hide the tiles that were highlighted.
-        foreach (var tile in tiles)
-        {
-            tile.Key.DarkLight(false);
-        }
     }
 
     private void Attack(BaseUnit user, BaseUnit target)
     {
-        var outCome = Utils.CalculateOutCome(target.unitData.GetAC(), weaponData.GetAttackRoll(user));
+        MenuManager.Instance.AddLog($"{user.UnitName} attacked {target.UnitName}\n");
+        var outCome = Utils.CalculateOutCome(weaponData.GetAttackRoll(user), target.unitData.GetAC());
         int damage;
         switch (outCome)
         {
@@ -88,7 +76,8 @@ public class Weapon : Item
                 break;
         }
         target.TakeDamage(damage);
-        user.Attacked();
+        user.CharacterAttackCounterIncrease();
     }
 
 }
+

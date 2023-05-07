@@ -19,6 +19,8 @@ public class UnitManager : MonoBehaviour
     // This is a public list of BaseEnemies.
     public List<BaseEnemy> Enemies;
 
+    [SerializeField] private Transform _cam;
+
     // This method is called when the script instance is being loaded.
     void Awake()
     {
@@ -51,12 +53,11 @@ public class UnitManager : MonoBehaviour
             // Set the character on the spawn tile.
             randomSpawnTile.SetUnit(Character);
 
-            // Set the character's HP and speed.
-            Character.unitData.HP = 30;
-            Character.unitData.Speed = 3;
             // Set up the menu for the character.
             MenuManager.Instance.setupMenu(Character);
         }
+
+        _cam.transform.parent = Character.transform;
 
         // Change the game state to spawn enemies.
         GameManager.Instance.ChangeState(GameState.SpawnEnemies);
@@ -82,10 +83,6 @@ public class UnitManager : MonoBehaviour
 
             // Get a random spawn tile.
             var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile(distMatrix);
-
-            // Set the enemy's HP ans speed.
-            spawnedEnemy.unitData.HP = 10;
-            spawnedEnemy.unitData.Speed = 2;
 
             // Set the enemy on the spawn tile.
             randomSpawnTile.SetUnit(spawnedEnemy);

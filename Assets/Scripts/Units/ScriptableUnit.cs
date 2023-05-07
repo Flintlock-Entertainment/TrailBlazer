@@ -24,17 +24,17 @@ public class ScriptableUnit : ScriptableObject {
 
     public Proficiency WeaponProf;
 
-    private SkillManager skillManager = new SkillManager();
+    private SkillManager skillManager;
 
-    public Item MainHand;
+    public ScriptableItem MainHand;
 
-    public Item OffHand;
+    public ScriptableItem OffHand;
 
-    public WearableItem Head;
+    public ScriptableWearableItem Head;
 
-    public WearableItem Body;
+    public ScriptableWearableItem Body;
 
-    public WearableItem Legs;
+    public ScriptableWearableItem Legs;
 
     public ScriptableUnit()
     {

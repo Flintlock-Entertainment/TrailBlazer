@@ -23,8 +23,8 @@ MonoBehaviour:
   - '"common"'
   SaveProf: 020000000200000002000000
   WeaponProf: 2
-  MainHand: {fileID: 0}
+  MainHand: {fileID: 11400000, guid: f6715cf2234b24348825529f9fe35b26, type: 2}
   OffHand: {fileID: 0}
-  Head: {fileID: 0}
-  Body: {fileID: 0}
-  Legs: {fileID: 0}
+  Head: {fileID: 11400000, guid: b7f0bb6aed089e7419a3f1ede5dc6542, type: 2}
+  Body: {fileID: 11400000, guid: b7f0bb6aed089e7419a3f1ede5dc6542, type: 2}
+  Legs: {fileID: 11400000, guid: b7f0bb6aed089e7419a3f1ede5dc6542, type: 2}

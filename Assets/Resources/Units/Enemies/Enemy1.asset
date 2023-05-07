@@ -14,3 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Faction: 1
   UnitPrefab: {fileID: -5723595769685195821, guid: a6a626e074df43a468b858d436c8020d, type: 3}
+  HP: 0
+  AC: 11
+  Stats: 020000000200000002000000020000000200000002000000
+  Speed: 2
+  Level: 2
+  Languages: []
+  SaveProf: 020000000200000002000000
+  WeaponProf: 2
+  MainHand: {fileID: 11400000, guid: b2afcc759783f3241a68f9ab30731132, type: 2}
+  OffHand: {fileID: 0}
+  Head: {fileID: 11400000, guid: b7f0bb6aed089e7419a3f1ede5dc6542, type: 2}
+  Body: {fileID: 11400000, guid: b7f0bb6aed089e7419a3f1ede5dc6542, type: 2}
+  Legs: {fileID: 11400000, guid: b7f0bb6aed089e7419a3f1ede5dc6542, type: 2}

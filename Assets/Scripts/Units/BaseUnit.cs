@@ -26,7 +26,7 @@ public class BaseUnit : MonoBehaviour
         Turns -= update;
     }
 
-    public void Attacked()
+    public void CharacterAttackCounterIncrease()
     {
         numOfAttacks++;
     }
@@ -38,6 +38,7 @@ public class BaseUnit : MonoBehaviour
 
     public virtual void TakeDamage(int damage)
     {
+        MenuManager.Instance.AddLog($"{UnitName} took {damage} points of damage\n");
         unitData.HP -= damage;
         bool alive = unitData.HP > 0;
         if (!alive)

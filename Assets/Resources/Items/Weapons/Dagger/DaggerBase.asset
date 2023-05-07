@@ -9,20 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b7cabd432f012a448065ea78e27d93a, type: 3}
-  m_Name: FatalD10
+  m_Script: {fileID: 11500000, guid: 54dbb1389f7531547bdaf5a651df2283, type: 3}
+  m_Name: DaggerBase
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 2490187897228655589, guid: fc2647441c8da624888b140ea38f99ce, type: 3}
   ItemSprite: {fileID: 0}
   itamName: 
-  Bulk: 0
-  Price: 0
-  Hands: 0
-  Hardness: 0
-  Durability: 0
-  numOfActions: 0
+  Bulk: 1
+  Price: 1
+  Hands: 1
+  Hardness: 1
+  Durability: 1
+  numOfActions: 1
   rarity: 0
   Description: 
-  DiceNumber: 10
-  Range: 0
-  baseWeapon: {fileID: 0}
+  DiceNumber: 4
+  Range: 1

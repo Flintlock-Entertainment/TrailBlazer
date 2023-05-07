@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b7cabd432f012a448065ea78e27d93a, type: 3}
-  m_Name: FatalD10
+  m_Script: {fileID: 11500000, guid: c504e3ea4fce28f499af4bb7ca58767c, type: 3}
+  m_Name: DaggerFinesseTrait
   m_EditorClassIdentifier: 
   Prefab: {fileID: 0}
   ItemSprite: {fileID: 0}
@@ -23,6 +23,6 @@ MonoBehaviour:
   numOfActions: 0
   rarity: 0
   Description: 
-  DiceNumber: 10
+  DiceNumber: 0
   Range: 0
-  baseWeapon: {fileID: 0}
+  baseWeapon: {fileID: 11400000, guid: 9c2fabd723b6e5448a2e6c822359a305, type: 2}

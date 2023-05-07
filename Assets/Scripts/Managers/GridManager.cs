@@ -22,7 +22,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Tile _floorTile, _wallTile;
 
     // Camera object used to display the game grid
-    [SerializeField] private Transform _cam;
+    //[SerializeField] private Transform _cam;
 
     // Dictionary of tiles on the game grid, accessed by their Vector2 position
     public Dictionary<Vector2, Tile> _tiles { get; private set; }
@@ -60,7 +60,7 @@ public class GridManager : MonoBehaviour
         }
 
         // Sets the camera position to the center of the game grid
-        _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
+        //_cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
 
         // Changes the game state to spawning the player character
         GameManager.Instance.ChangeState(GameState.SpawnCharacter);

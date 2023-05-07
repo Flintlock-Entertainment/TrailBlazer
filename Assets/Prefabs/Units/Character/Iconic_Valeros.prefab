@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bb223d60ec9e34b93d1aefae659c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitName: 
+  UnitName: Player
   OccupiedTile: {fileID: 0}
   Faction: 0
   unitData: {fileID: 11400000, guid: ec97c5b5ef1837644a163d79d9e58c5c, type: 2}

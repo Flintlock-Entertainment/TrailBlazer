@@ -8,14 +8,15 @@ public abstract class ScriptableWeapon : ScriptableItem
     public int DiceNumber;
     public Func<int> DamageDice;
     public int Range;
-    public ScriptableWeapon()
+
+    private void OnEnable()
     {
+        Debug.Log("OnEnable: " + DiceNumber);
         DamageDice = Utils.GenerateDice(DiceNumber);
     }
-
     public virtual int GetAttackRoll(BaseUnit user)
     {
-        return Utils.d20() + user.unitData.GetStat(Abilities.Strength) + user.unitData.GetWeaponProf() + GetMultipleAttackPenalty(user.numOfAttacks);
+        return Utils.CheckRoll() + user.unitData.GetStat(Abilities.Strength) + user.unitData.GetWeaponProf() + GetMultipleAttackPenalty(user.numOfAttacks);
     }
     public virtual int GetCritSuccessDamage(BaseUnit user)
     {

@@ -9,5 +9,10 @@ public class ScriptableWearableItem : ScriptableItem
     public int DexCap;
     public int CheckPenalty;
     public int SpeedPenalty;
-    public int StrengthThreshold; 
+    public int StrengthThreshold;
+
+    public int GetAC(int dex)
+    {
+        return ACBonus + Mathf.Min(dex, DexCap);
+    }
 }

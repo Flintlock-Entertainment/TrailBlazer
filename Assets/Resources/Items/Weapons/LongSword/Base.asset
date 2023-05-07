@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54dbb1389f7531547bdaf5a651df2283, type: 3}
+  m_Name: Base
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 2490187897228655589, guid: fc2647441c8da624888b140ea38f99ce, type: 3}
+  ItemSprite: {fileID: 21300000, guid: b09f618bdce7fb3499158423aa56e266, type: 3}
+  itamName: LongSwod
+  Bulk: 1
+  Price: 10
+  Hands: 1
+  Hardness: 10
+  Durability: 10
+  numOfActions: 1
+  rarity: 0
+  Description: 
+  DiceNumber: 8
+  Range: 1

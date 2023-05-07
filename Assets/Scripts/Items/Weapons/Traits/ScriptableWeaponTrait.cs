@@ -8,7 +8,7 @@ public abstract class ScriptableWeaponTrait : ScriptableWeapon
 
     public override int GetAttackRoll(BaseUnit user)
     {
-        return baseWeapon.GetAttackRoll( user);
+        return baseWeapon.GetAttackRoll(user);
     }
     public override int GetCritSuccessDamage(BaseUnit user)
     {
@@ -33,7 +33,17 @@ public abstract class ScriptableWeaponTrait : ScriptableWeapon
 
     public override int GetRange()
     {
-        return base.GetRange();
+        return baseWeapon.GetRange();
+    }
+
+    public override ItemLogic GetItem()
+    {
+        return baseWeapon.GetItem();
+    }
+
+    public override int GetNumOfActions()
+    {
+        return baseWeapon.GetNumOfActions();
     }
 
 }

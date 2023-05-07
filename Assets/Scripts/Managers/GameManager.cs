@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
                 UnitManager.Instance.SpawnEnemies();
                 break;
             case GameState.PlayersTurn:
-                // Do nothing, the game is waiting for player input
+                UnitManager.Instance.PlayerTurn();
                 break;
             case GameState.EnemiesTurn:
                 // Start the EnemiesTurn coroutine in the UnitManager

@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class Inventory
 {
-    public List<Item> Items = new List<Item>();
+    public List<ItemLogic> Items = new List<ItemLogic>();
     public int totalBulk;
 
-    public void AddItem(Item item, int strengthStat)
+    public void AddItem(ItemLogic item, int strengthStat)
     {
         Items.Add(item);
-        totalBulk = Items.Sum(_item => item.itemData.Bulk);
+        //totalBulk = Items.Sum(_item => item.itemData.Bulk);
     }
-    public void RemoveItem(Item item, int strengthStat)
+    public void RemoveItem(ItemLogic item, int strengthStat)
     {
         Items.Remove(item);
-        totalBulk = Items.Sum(_item => item.itemData.Bulk);
+        //totalBulk = Items.Sum(_item => item.itemData.Bulk);
     }
     
 

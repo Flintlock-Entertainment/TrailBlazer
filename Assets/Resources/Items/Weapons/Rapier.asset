@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54dbb1389f7531547bdaf5a651df2283, type: 3}
-  m_Name: LongSword
+  m_Name: Rapier
   m_EditorClassIdentifier: 
-  ItemSprite: {fileID: 21300000, guid: b09f618bdce7fb3499158423aa56e266, type: 3}
-  itamName: LongSwod
-  Bulk: 1
-  Price: 10
-  Hands: 1
-  Hardness: 10
-  Durability: 10
-  numOfActions: 1
+  Prefab: {fileID: 0}
+  ItemSprite: {fileID: 0}
+  itamName: 
+  Bulk: 0
+  Price: 0
+  Hands: 0
+  Hardness: 0
+  Durability: 0
+  numOfActions: 0
   rarity: 0
   Description: 
-  DiceNumber: 8
-  Range: 1
+  DiceNumber: 6
+  Range: 0

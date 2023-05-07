@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Item/Weapon/Trait/Fatal Trait")]
+[CreateAssetMenu(fileName = "New Trait", menuName = "Item/Weapon/Trait/Fatal Trait")]
 public class FatalTrait : ScriptableWeaponTrait
 {
     public override int GetCritSuccessDamage(BaseUnit user)

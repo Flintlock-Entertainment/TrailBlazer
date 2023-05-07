@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Brute Strategy", menuName = "Strategies/Brute Strategy")]
 public class BruteStartegy : IBaseStrategy
 {
-    public IEnumerator RunStrategy(BaseEnemy user)
+    public override IEnumerator RunStrategy(BaseEnemy user)
     {
         while (user.Turns > 0)
         {
             yield return new WaitForSeconds(0.5f);
             // Get the shortest path to the player character
             var path = BFS.GetShortestPath(user.OccupiedTile, UnitManager.Instance.Character.OccupiedTile);
-            Weapon wieldedWeapon = (Weapon)user.unitData.MainHand;
+
+            var weaponData = (ScriptableWeapon)user.unitData.MainHand;
+
+            WeaponLogic wieldedWeapon = (WeaponLogic)ItemLogic.GetItemLogic(weaponData);
             // If the player character is within attack range, attack them
-            if (path.Count <= wieldedWeapon.weaponData.GetRange())
+            if (path.Count <= weaponData.GetRange())
             {
-                user.UpdateTurns(wieldedWeapon.Use(user));
+                user.UpdateTurns(wieldedWeapon.Use(user, weaponData));
                 continue;
             }
             // If the player character is within moving range, move towards them

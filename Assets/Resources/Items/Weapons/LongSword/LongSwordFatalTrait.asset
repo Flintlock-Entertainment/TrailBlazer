@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b7cabd432f012a448065ea78e27d93a, type: 3}
-  m_Name: FatalD10
+  m_Name: LongSwordFatalTrait
   m_EditorClassIdentifier: 
   Prefab: {fileID: 0}
   ItemSprite: {fileID: 0}
@@ -25,4 +25,4 @@ MonoBehaviour:
   Description: 
   DiceNumber: 10
   Range: 0
-  baseWeapon: {fileID: 0}
+  baseWeapon: {fileID: 11400000, guid: 470bd0e88bdc13e41965fcc009a4d70d, type: 2}

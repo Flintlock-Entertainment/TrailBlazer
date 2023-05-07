@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Item/Scriptable Item")]
 public class ScriptableItem : ScriptableObject
 {
+    public ItemLogic Prefab;
     public Sprite ItemSprite;
     public string itamName;
     public int Bulk;
@@ -15,6 +16,16 @@ public class ScriptableItem : ScriptableObject
     public int numOfActions;
     public Rarity rarity;
     public string Description;
+
+    public virtual ItemLogic GetItem()
+    {
+        return Prefab;
+    }
+
+    public virtual int GetNumOfActions()
+    {
+        return numOfActions;
+    }
 }
 
 public enum Rarity

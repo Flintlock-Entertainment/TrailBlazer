@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface  IBaseStrategy 
+public abstract class  IBaseStrategy : ScriptableObject
 {
-    public IEnumerator RunStrategy(BaseEnemy user);
+    public virtual IEnumerator RunStrategy(BaseEnemy user) => throw new NotImplementedException();
 }

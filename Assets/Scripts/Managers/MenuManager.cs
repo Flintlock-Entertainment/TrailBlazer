@@ -12,6 +12,8 @@ public class MenuManager : MonoBehaviour
     // This is a serialized field for Menu.
     [SerializeField] private InformationMenu _menu;
 
+    [SerializeField] private CombatLogger _logger;
+
     // This method is called when the script instance is being loaded.
     void Awake()
     {
@@ -31,5 +33,10 @@ public class MenuManager : MonoBehaviour
     {
         // Update the character's HP in the menu.
         _menu.ChangeHP(character.unitData.HP);
+    }
+
+    public void AddLog(string log)
+    {
+        _logger.AddLog(log);
     }
 }
