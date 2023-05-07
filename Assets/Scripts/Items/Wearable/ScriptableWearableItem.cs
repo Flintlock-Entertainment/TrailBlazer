@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Scriptable WearableItem")]
+[CreateAssetMenu(fileName = "New Item", menuName = "Item/Wearable/Scriptable WearableItem")]
 public class ScriptableWearableItem : ScriptableItem
 {
     public int ACBonus;

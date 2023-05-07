@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Weapon : Item
 {
-    public new ScriptableWeapon itemData;
+    public  ScriptableWeapon weaponData;
+
 
     public override int Use(BaseEnemy user)
     {
         // Get the distance matrix for the current tile and show tiles that are within the character's attack range.
         var distMatrix = BFS.GetDistanceMatrix(user.OccupiedTile);
-        var tiles = distMatrix.Where(t => t.Value <= itemData.Range);
+        var tiles = distMatrix.Where(t => t.Value <= weaponData.GetRange());
         var target = UnitManager.Instance.Character;
         foreach (var tile in tiles)
         {
@@ -21,7 +22,7 @@ public class Weapon : Item
                 break;
             }
         }
-        return itemData.numOfActions;
+        return weaponData.numOfActions;
     }
     /*
      * Perform the Attack action for the character.
@@ -32,7 +33,7 @@ public class Weapon : Item
     {
         // Get the distance matrix for the current tile and show tiles that are within the character's attack range.
         var distMatrix = BFS.GetDistanceMatrix(user.OccupiedTile);
-        var tiles = distMatrix.Where(t => t.Value <= itemData.Range);
+        var tiles = distMatrix.Where(t => t.Value <= weaponData.GetRange());
         foreach (var tile in tiles)
         {
             tile.Key.DarkLight(true);
@@ -44,7 +45,7 @@ public class Weapon : Item
         // Wait for player to select a tile and then attack any enemy units on the tile.
         StartCoroutine(user.WaitForPlayerToSelect(tiles, _AttackAction));
 
-        return itemData.numOfActions;
+        return weaponData.numOfActions;
     }
 
     /*
@@ -69,21 +70,21 @@ public class Weapon : Item
 
     private void Attack(BaseUnit user, BaseUnit target)
     {
-        var outCome = Utils.CalculateOutCome(target.unitData.GetAC(), itemData.GetAttackRoll(user));
+        var outCome = Utils.CalculateOutCome(target.unitData.GetAC(), weaponData.GetAttackRoll(user));
         int damage;
         switch (outCome)
         {
             case (OutCome.CritSuccess):
-                damage = itemData.GetCritSuccessDamage(user);
+                damage = weaponData.GetCritSuccessDamage(user);
                 break;
             case (OutCome.Success):
-                damage = itemData.GetSuccessDamage(user);
+                damage = weaponData.GetSuccessDamage(user);
                 break;
             case (OutCome.Fail):
-                damage = itemData.GetFailDamage(user);
+                damage = weaponData.GetFailDamage(user);
                 break;
             default:
-                damage = itemData.GetCritFailDamage(user);
+                damage = weaponData.GetCritFailDamage(user);
                 break;
         }
         target.TakeDamage(damage);

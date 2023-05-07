@@ -13,7 +13,7 @@ public class BruteStartegy : IBaseStrategy
             var path = BFS.GetShortestPath(user.OccupiedTile, UnitManager.Instance.Character.OccupiedTile);
             Weapon wieldedWeapon = (Weapon)user.unitData.MainHand;
             // If the player character is within attack range, attack them
-            if (path.Count <= wieldedWeapon.itemData.Range)
+            if (path.Count <= wieldedWeapon.weaponData.GetRange())
             {
                 user.UpdateTurns(wieldedWeapon.Use(user));
                 continue;

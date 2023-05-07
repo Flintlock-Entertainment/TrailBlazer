@@ -6,29 +6,34 @@ public abstract class ScriptableWeaponTrait : ScriptableWeapon
 {
     public ScriptableWeapon baseWeapon;
 
-    public override int GetAttackRoll()
+    public override int GetAttackRoll(BaseUnit user)
     {
-        return baseWeapon.GetAttackRoll();
+        return baseWeapon.GetAttackRoll( user);
     }
-    public override int GetCritSuccessDamage()
+    public override int GetCritSuccessDamage(BaseUnit user)
     {
-        return baseWeapon.GetCritSuccessDamage();
+        return baseWeapon.GetCritSuccessDamage(user);
     }
-    public override int GetSuccessDamage()
+    public override int GetSuccessDamage(BaseUnit user)
     {
-        return baseWeapon.GetSuccessDamage();
+        return baseWeapon.GetSuccessDamage(user);
     }
-    public override int GetCritFailDamage()
+    public override int GetCritFailDamage(BaseUnit user)
     {
-        return baseWeapon.GetCritFailDamage();
+        return baseWeapon.GetCritFailDamage(user);
     }
-    public override int GetFailDamage()
+    public override int GetFailDamage(BaseUnit user)
     {
-        return baseWeapon.GetFailDamage();
+        return baseWeapon.GetFailDamage(user);
     }
     public override int GetMultipleAttackPenalty(int numOfAction)
     {
         return baseWeapon.GetMultipleAttackPenalty(numOfAction);
+    }
+
+    public override int GetRange()
+    {
+        return base.GetRange();
     }
 
 }

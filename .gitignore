@@ -103,3 +103,4 @@ $RECYCLE.BIN/
 
 # Pycharm project
 .idea
+.fake
