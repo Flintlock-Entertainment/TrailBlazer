@@ -9,7 +9,7 @@ public class CombatLogger : MonoBehaviour
 
     public void Start()
     {
-        logger.text = "";
+        logger.text = "Combat has begun!\n";
     }
     public void AddLog(string log)
     {
