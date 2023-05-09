@@ -6,6 +6,7 @@ using UnityEngine;
 public class WeaponLogic : ItemLogic
 {
     private static ScriptableWeapon weaponData;
+    public static new WeaponLogic Instance;
     public override int Use(BaseEnemy user, ScriptableItem itemData)
     {
         weaponData = (ScriptableWeapon)itemData;

@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Faction: 0
   UnitPrefab: {fileID: -935126524107209968, guid: 741edd6766c85a948948e6b3ae8f5965, type: 3}
-  HP: 30
-  AC: 12
+  HP: 29
   Stats: 030000000200000004000000020000000100000000000000
   Speed: 3
   Level: 1
@@ -26,5 +25,5 @@ MonoBehaviour:
   MainHand: {fileID: 11400000, guid: f6715cf2234b24348825529f9fe35b26, type: 2}
   OffHand: {fileID: 0}
   Head: {fileID: 11400000, guid: b7f0bb6aed089e7419a3f1ede5dc6542, type: 2}
-  Body: {fileID: 11400000, guid: b7f0bb6aed089e7419a3f1ede5dc6542, type: 2}
+  Body: {fileID: 11400000, guid: ec5c330e9c7e8714d8328c85aab3448c, type: 2}
   Legs: {fileID: 11400000, guid: b7f0bb6aed089e7419a3f1ede5dc6542, type: 2}

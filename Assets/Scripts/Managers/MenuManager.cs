@@ -25,7 +25,7 @@ public class MenuManager : MonoBehaviour
     public void setupMenu(BaseCharacter character)
     {
         // Initialize the menu with the character's HP and speed.
-        _menu.init(character.unitData.HP, character.unitData.Speed);
+        _menu.init(character.unitData.HP, character.unitData.Speed, character.Turns);
     }
 
     // This method is used to update the character's HP in the menu.
@@ -33,6 +33,8 @@ public class MenuManager : MonoBehaviour
     {
         // Update the character's HP in the menu.
         _menu.ChangeHP(character.unitData.HP);
+
+        _menu.ChangeTurnCounter(character.Turns);
     }
 
     public void AddLog(string log)

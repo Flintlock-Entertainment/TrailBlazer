@@ -11,7 +11,6 @@ public abstract class ScriptableWeapon : ScriptableItem
 
     private void OnEnable()
     {
-        Debug.Log("OnEnable: " + DiceNumber);
         DamageDice = Utils.GenerateDice(DiceNumber);
     }
     public virtual int GetAttackRoll(BaseUnit user)

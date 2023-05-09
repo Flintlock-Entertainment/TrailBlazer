@@ -11,17 +11,17 @@ public class BaseUnit : MonoBehaviour
     public ScriptableUnit unitData;
     public Inventory inventory;
 
-    public int Turns { get; protected set; }
+    public int Turns { get; protected set; } 
 
     public int numOfAttacks { get; protected set; }
 
-    public void ResetTurn()
+    public virtual void ResetTurn()
     {
         Turns = 3;
         numOfAttacks = 0;
     }
 
-    public void UpdateTurns(int update)
+    public virtual void UpdateTurns(int update)
     {
         Turns -= update;
     }

@@ -9,6 +9,7 @@ public class BaseEnemy : BaseUnit
 
     private void OnDestroy()
     {
+        UpdateTurns(Turns);
         UnitManager.Instance.Enemies.Remove(this);
     }
     // Define an enemy's turn as a coroutine so it can be paused and resumed

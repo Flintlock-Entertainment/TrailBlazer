@@ -19,7 +19,7 @@ public class UnitManager : MonoBehaviour
     // This is a public list of BaseEnemies.
     public List<BaseEnemy> Enemies;
 
-    [SerializeField] private Transform _cam;
+    //[SerializeField] private Transform _cam;
 
     // This method is called when the script instance is being loaded.
     void Awake()
@@ -57,7 +57,7 @@ public class UnitManager : MonoBehaviour
             MenuManager.Instance.setupMenu(Character);
         }
 
-        _cam.transform.parent = Character.transform;
+       // _cam.transform.parent = Character.transform;
         // Change the game state to spawn enemies.
         GameManager.Instance.ChangeState(GameState.SpawnEnemies);
     }
@@ -102,11 +102,10 @@ public class UnitManager : MonoBehaviour
     // This coroutine executes the turn of each enemy in the Enemies list.
     public IEnumerator EnemiesTurn()
     {
+        yield return new WaitForSeconds(0.5f);
         foreach (BaseEnemy enemy in Enemies)
         {
-            Debug.Log("before turn");
             yield return enemy.EnemyTurn(); // Wait for the enemy to finish its turn.
-            Debug.Log("after turn");
         }
 
         GameManager.Instance.ChangeState(GameState.PlayersTurn); // Change the game state to player's turn after all enemies have taken their turns.

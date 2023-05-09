@@ -18,11 +18,23 @@ public class BaseCharacter : BaseUnit
         MenuManager.Instance.UpdateMenu(this);
     }
 
+    public override void ResetTurn()
+    {
+        base.ResetTurn();
+        MenuManager.Instance.UpdateMenu(this);
+    }
+
+    public override void UpdateTurns(int update)
+    {
+        base.UpdateTurns(update);
+        MenuManager.Instance.UpdateMenu(this);
+    }
+
     public void MainHand()
     {
         if (!GameManager.Instance.isPlayersTurn()) return;
         var itemData = unitData.MainHand;
-        Turns -= ItemLogic.GetItemLogic(itemData).Use(this, itemData);
+        UpdateTurns(ItemLogic.GetItemLogic(itemData).Use(this, itemData));
     }
 
     /*
@@ -52,7 +64,7 @@ public class BaseCharacter : BaseUnit
     private void _StrideAction(IEnumerable<KeyValuePair<Tile, int>> tiles, BaseCharacter user)
     {
         selectedTile.SetUnit(this);
-        Turns--;
+        UpdateTurns(1);
     }
 
     

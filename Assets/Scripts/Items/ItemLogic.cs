@@ -8,7 +8,21 @@ public class ItemLogic : MonoBehaviour
 
     public void Awake()
     {
-        Instance = this;
+        Debug.Log("awake");
+
+        if ((Instance != null) && (Instance != this) && (Instance.GetType() == this.GetType()))
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    public ItemLogic getInstance()
+    {
+        return Instance;
     }
     public virtual int Use(BaseEnemy user, ScriptableItem itemData)
     {
@@ -21,10 +35,10 @@ public class ItemLogic : MonoBehaviour
 
     public static ItemLogic GetItemLogic(ScriptableItem itemData)
     {
-        Debug.Log("get item logic");
-        ItemLogic item;  
-        Instantiate(itemData.GetItem());
-        item = Instance;
+        
+        ItemLogic item;
+        var _instance = Instantiate(itemData.GetItem());
+        item = _instance.getInstance();
         return item;
     }
 }

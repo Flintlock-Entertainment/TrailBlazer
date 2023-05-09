@@ -12,3 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329ea7bfaefcef945892d0c0e3297919, type: 3}
   m_Name: PlateArmor
   m_EditorClassIdentifier: 
+  Prefab: {fileID: 0}
+  ItemSprite: {fileID: 0}
+  itamName: 
+  Bulk: 1
+  Price: 1
+  Hands: 1
+  Hardness: 1
+  Durability: 1
+  numOfActions: 0
+  rarity: 0
+  Description: 
+  ACBonus: 16
+  DexCap: 2
+  CheckPenalty: 10
+  SpeedPenalty: 10
+  StrengthThreshold: 2
