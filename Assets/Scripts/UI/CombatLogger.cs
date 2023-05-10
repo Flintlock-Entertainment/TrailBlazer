@@ -3,16 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class CombatLogger : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI logger;
+    // Inspector fields
+    [SerializeField] private int maxLogLines;
+    [SerializeField] private TextMeshProUGUI logText;
 
-    public void Start()
+    // Private fields
+    private Queue<string> messageQueue;
+
+    void Awake()
     {
-        logger.text = "Combat has begun!\n";
+        maxLogLines = 10;
+        messageQueue = new Queue<string>();
+        logText.text = "Combat has started!";
     }
-    public void AddLog(string log)
+
+    // Add a message to the combat log
+    public void AddLog(string message)
     {
-        logger.text += log;
+        // Enqueue the message
+        messageQueue.Enqueue(message);
+
+        // If the queue is too long, remove the oldest message
+        while (messageQueue.Count > maxLogLines)
+        {
+            messageQueue.Dequeue();
+        }
+
+        // Update the log text
+        UpdateLogText();
+    }
+
+    // Update the combat log text
+    private void UpdateLogText()
+    {
+        // Clear the log text
+        logText.text = "";
+
+        // Add each message to the log text
+        foreach (string message in messageQueue)
+        {
+            logText.text += message + "\n";
+        }
+
+        // Set the anchored position of the log text to the top of its parent rect transform
+        logText.rectTransform.anchoredPosition = new Vector2(logText.rectTransform.anchoredPosition.x, 0f);
     }
 }
