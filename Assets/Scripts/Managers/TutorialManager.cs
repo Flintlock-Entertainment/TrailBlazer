@@ -5,30 +5,39 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class TutorialManager : MonoBehaviour
 {
     [SerializeField] TextMeshPro tutorialText;
-    [SerializeField] public GameObject[] popUps = new GameObject[4];
-    [SerializeField] public string[] popUpText = new string[4];
-    private int popUpIndex;
-    [SerializeField] InputAction lmbClick;
-    
 
+    // an array of game objects to show different pop-ups
+    [SerializeField] public GameObject[] popUps = new GameObject[4];
+
+    // an array of strings to store the text for each pop-up
+    [SerializeField] public string[] popUpText = new string[4];
+
+    // an index to keep track of which pop-up is currently being shown
+    private int popUpIndex;
+
+    // input action for left mouse button click
+    [SerializeField] InputAction lmbClick; 
+
+    // make sure the input action is properly initialized
     void OnValidate()
     {
-        // Provide default bindings for the input actions.
-        // Based on answer by DMGregory: https://gamedev.stackexchange.com/a/205345/18261
         if (lmbClick == null)
             lmbClick = new InputAction(type: InputActionType.Button);
         if (lmbClick.bindings.Count == 0)
             lmbClick.AddBinding("<Mouse>/leftButton");
     }
 
+    // enable the input action when the object is enabled
     private void OnEnable()
     {
         lmbClick.Enable();
     }
 
+    // disable the input action when the object is disabled
     private void OnDisable()
     {
         lmbClick.Disable();
@@ -36,6 +45,7 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
+        // show the first pop-up and hide all others
         tutorialText.text = popUpText[0];
         popUps[0].SetActive(true);
         for (int i = 1; i < popUps.Length; i++)
@@ -46,6 +56,7 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
+        // when left mouse button is clicked, show the next pop-up and hide all others
         if (lmbClick.WasPerformedThisFrame())
         {
             popUpIndex++;
@@ -62,16 +73,15 @@ public class TutorialManager : MonoBehaviour
                 }
             }
         }
-        if(popUpIndex == popUpText.Length)
+        // if all pop-ups have been shown, destroy the tutorial objects and the tutorial manager
+        if (popUpIndex == popUpText.Length)
         {
             for (int i = 0; i < popUps.Length; i++)
             {
                 Destroy(popUps[i]);
             }
             Destroy(tutorialText);
-            //tutorialText.text = "";
             Destroy(this.gameObject);
-
         }
     }
 }
