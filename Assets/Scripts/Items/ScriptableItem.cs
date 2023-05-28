@@ -5,17 +5,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Item/Scriptable Item")]
 public class ScriptableItem : ScriptableObject
 {
-    public ItemLogic Prefab;
-    public Sprite ItemSprite;
-    public string itamName;
-    public int Bulk;
-    public int Price;
-    public int Hands;
-    public int Hardness;
-    public int Durability;
-    public int numOfActions;
-    public Rarity rarity;
-    public string Description;
+    [SerializeField] public ItemLogic Prefab;
+    [SerializeField] public Sprite ItemSprite;
+    [SerializeField] private string itamName;
+    [SerializeField] private int Bulk;
+    [SerializeField] private int Price;
+    [SerializeField] private int Hands;
+    [SerializeField] private int Hardness;
+    [SerializeField] private int Durability;
+    [SerializeField] private int numOfActions;
+    [SerializeField] private Rarity rarity;
+    [SerializeField] private string Description;
 
     public virtual ItemLogic GetItem()
     {

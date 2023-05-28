@@ -5,14 +5,16 @@ using UnityEngine;
 
 public abstract class ScriptableWeapon : ScriptableItem
 {
-    public int DiceNumber;
-    public Func<int> DamageDice;
-    public int Range;
+    [SerializeField] private int DiceNumber;
+    [SerializeField] private int Range;
 
     private void OnEnable()
     {
         DamageDice = Utils.GenerateDice(DiceNumber);
     }
+
+    [SerializeField] public Func<int> DamageDice { get; private set; }
+
     public virtual int GetAttackRoll(BaseUnit user)
     {
         return Utils.CheckRoll() + user.unitData.GetStat(Abilities.Strength) + user.unitData.GetWeaponProf() + GetMultipleAttackPenalty(user.numOfAttacks);

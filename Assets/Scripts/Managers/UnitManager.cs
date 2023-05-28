@@ -44,9 +44,10 @@ public class UnitManager : MonoBehaviour
             // Get a random character prefab.
             var randomPrefab = GetRandomUnit<BaseCharacter>(Faction.Character);
 
+            Debug.Log(randomPrefab);
             // Instantiate the character prefab.
             Character = Instantiate(randomPrefab);
-
+            Character.init();
             // Get a random spawn tile.
             var randomSpawnTile = GridManager.Instance.GetCharacterSpawnTile();
 
@@ -69,7 +70,7 @@ public class UnitManager : MonoBehaviour
         var distMatrix = BFS.GetDistanceMatrix(GridManager.Instance._tiles[Character.GetCurrentPosition()]);
 
         // Set the number of enemies to spawn.
-        var enemyCount = 1;
+        var enemyCount = 4;
 
         // Spawn the enemies.
         for (int i = 0; i < enemyCount; i++)
@@ -79,6 +80,7 @@ public class UnitManager : MonoBehaviour
 
             // Instantiate the enemy prefab.
             var spawnedEnemy = Instantiate(randomPrefab);
+            spawnedEnemy.init();
 
             // Get a random spawn tile.
             var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile(distMatrix);

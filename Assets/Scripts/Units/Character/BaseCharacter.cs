@@ -33,7 +33,7 @@ public class BaseCharacter : BaseUnit
     public void MainHand()
     {
         if (!GameManager.Instance.isPlayersTurn()) return;
-        var itemData = unitData.MainHand;
+        var itemData = unitData.GetMainHand();
         UpdateTurns(ItemLogic.GetItemLogic(itemData).Use(this, itemData));
     }
 
@@ -49,7 +49,7 @@ public class BaseCharacter : BaseUnit
 
         // Get the distance matrix for the current tile and show tiles that are within the character's speed range.
         var distMatrix = BFS.GetDistanceMatrix(OccupiedTile);
-        var tiles = distMatrix.Where(t => t.Value <= unitData.Speed);
+        var tiles = distMatrix.Where(t => t.Value <= unitData.GetSpeed());
 
         ToggleDarkLightTiles(tiles, true);
 

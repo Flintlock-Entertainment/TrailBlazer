@@ -6,34 +6,36 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Unit", menuName = "Scriptable Unit")]
 public class ScriptableUnit : ScriptableObject
 {
-    public Faction Faction;
-    public BaseUnit UnitPrefab;
+    [SerializeField] public Faction Faction;
+    [SerializeField] public BaseUnit UnitPrefab;
 
-    public int HP;
+    [SerializeField] private int baseHP;
 
-    public int[] Stats;
+    [SerializeField] private int classHP;
 
-    public int Speed;
+    [SerializeField] private int[] Stats;
 
-    public int Level;
+    [SerializeField] private int Speed;
 
-    public List<string> Languages;
+    [SerializeField] private int Level;
 
-    public Proficiency[] SaveProf;
+    [SerializeField] private List<string> Languages;
 
-    public Proficiency WeaponProf;
+    [SerializeField] private Proficiency[] SaveProf;
+
+    [SerializeField] private Proficiency WeaponProf;
 
     private SkillManager skillManager;
 
-    public ScriptableItem MainHand;
-    
-    public ScriptableItem OffHand;
+    [SerializeField] private ScriptableWeapon MainHand;
 
-    public ScriptableWearableItem Head;
+    [SerializeField] private ScriptableItem OffHand;
 
-    public ScriptableWearableItem Body;
+    [SerializeField] private ScriptableWearableItem Head;
 
-    public ScriptableWearableItem Legs;
+    [SerializeField] private ScriptableWearableItem Body;
+
+    [SerializeField] private ScriptableWearableItem Legs;
 
     public ScriptableUnit()
     {
@@ -63,9 +65,19 @@ public class ScriptableUnit : ScriptableObject
         return Stats[Convert.ToInt32(ability)];
     }
 
+    public int GetHP()
+    {
+        return baseHP + (GetStat(Abilities.Constitution) + classHP) * Level;
+    }
+
     public int GetAC()
     {
         return Head.GetAC(GetStat(Abilities.Dexterity)) + Body.GetAC(GetStat(Abilities.Dexterity)) + Legs.GetAC(GetStat(Abilities.Dexterity));
+    }
+
+    public int GetSpeed()
+    {
+        return Speed;
     }
 
     public int GetWeaponProf()
@@ -83,6 +95,15 @@ public class ScriptableUnit : ScriptableObject
         return Convert.ToInt32(SaveProf[Convert.ToInt32(save)]);
     }
 
+    public ScriptableWeapon GetMainHand()
+    {
+        return MainHand;
+    }
+
+    public ScriptableItem GetOffHand()
+    {
+        return OffHand;
+    }
     private class SkillManager
     {
         public Proficiency[] SkillProf;

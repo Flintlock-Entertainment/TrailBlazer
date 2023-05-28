@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 329ea7bfaefcef945892d0c0e3297919, type: 3}
-  m_Name: Unarmored
+  m_Name: NoArmor
   m_EditorClassIdentifier: 
   Prefab: {fileID: 0}
   ItemSprite: {fileID: 0}
@@ -23,8 +23,8 @@ MonoBehaviour:
   numOfActions: 0
   rarity: 0
   Description: 
-  ACBonus: 10
-  DexCap: 100
+  ACBonus: 0
+  DexCap: 0
   CheckPenalty: 0
   SpeedPenalty: 0
   StrengthThreshold: 0

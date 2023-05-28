@@ -11,6 +11,12 @@ public class BaseUnit : MonoBehaviour
     public ScriptableUnit unitData;
     public Inventory inventory;
 
+    public int currentHP { get; private set; }
+
+    public void init()
+    {
+        currentHP = unitData.GetHP();
+    }
     public int Turns { get; protected set; } 
 
     public int numOfAttacks { get; protected set; }
@@ -38,11 +44,15 @@ public class BaseUnit : MonoBehaviour
 
     public virtual void TakeDamage(int damage)
     {
-        MenuManager.Instance.AddLog($"{UnitName} took {damage} points of damage\n");
-        unitData.HP -= damage;
-        bool alive = unitData.HP > 0;
-        if (!alive)
-            Destroy(this.gameObject);
+        if(damage != 0)
+        {
+            MenuManager.Instance.AddLog($"{UnitName} took {damage} points of damage\n");
+            currentHP -= damage;
+            bool alive = currentHP > 0;
+            if (!alive)
+                Destroy(this.gameObject);
+        }
+        
     }
 
     protected virtual void ChangeTurn() { }

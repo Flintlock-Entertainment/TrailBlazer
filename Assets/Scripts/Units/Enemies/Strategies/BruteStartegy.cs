@@ -13,7 +13,7 @@ public class BruteStartegy : IBaseStrategy
             // Get the shortest path to the player character
             var path = BFS.GetShortestPath(user.OccupiedTile, UnitManager.Instance.Character.OccupiedTile);
 
-            var weaponData = (ScriptableWeapon)user.unitData.MainHand;
+            var weaponData = user.unitData.GetMainHand();
 
             WeaponLogic wieldedWeapon = (WeaponLogic)ItemLogic.GetItemLogic(weaponData);
             // If the player character is within attack range, attack them
@@ -23,7 +23,7 @@ public class BruteStartegy : IBaseStrategy
                 continue;
             }
             // If the player character is within moving range, move towards them
-            if (path.Count <= user.unitData.Speed + 1)
+            if (path.Count <= user.unitData.GetSpeed() + 1)
             {
                 path.Last.Value.SetUnit(user); // Set the enemy's position to the last tile in the path
             }
@@ -33,7 +33,7 @@ public class BruteStartegy : IBaseStrategy
                 Debug.Log("out of range");
                 Tile[] _path = new Tile[path.Count];
                 path.CopyTo(_path, 0);
-                _path[user.unitData.Speed].SetUnit(user); // Set the enemy's position to the tile `speed` spaces away from their current position
+                _path[user.unitData.GetSpeed()].SetUnit(user); // Set the enemy's position to the tile `speed` spaces away from their current position
             }
             user.UpdateTurns(1);
         }
