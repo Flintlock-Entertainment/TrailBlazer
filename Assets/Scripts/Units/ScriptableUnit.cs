@@ -9,6 +9,8 @@ public class ScriptableUnit : ScriptableObject
     [SerializeField] public Faction Faction;
     [SerializeField] public BaseUnit UnitPrefab;
 
+    [SerializeField] private int actionsPerTurn;
+
     [SerializeField] private int baseHP;
 
     [SerializeField] private int classHP;
@@ -45,66 +47,71 @@ public class ScriptableUnit : ScriptableObject
         skillManager = new SkillManager();
     }
 
-    public int GetReflexSave()
+    public virtual int GetReflexSave()
     {
         return GetSave(Saves.Reflex) + GetStat(Abilities.Dexterity);
     }
 
-    public int GetFortitueSave()
+    public virtual int GetFortitueSave()
     {
         return GetSave(Saves.Fortitude) + GetStat(Abilities.Constitution);
     }
 
-    public int GetWillSave()
+    public virtual int GetWillSave()
     {
         return GetSave(Saves.Will) + GetStat(Abilities.Wisdom);
     }
 
-    public int GetStat(Abilities ability)
+    public virtual int GetStat(Abilities ability)
     {
         return Stats[Convert.ToInt32(ability)];
     }
 
-    public int GetHP()
+    public virtual int GetActionsPerTurn()
+    {
+        return actionsPerTurn;
+    }
+
+    public virtual int GetHP()
     {
         return baseHP + (GetStat(Abilities.Constitution) + classHP) * Level;
     }
 
-    public int GetAC()
+    public virtual int GetAC()
     {
         return Head.GetAC(GetStat(Abilities.Dexterity)) + Body.GetAC(GetStat(Abilities.Dexterity)) + Legs.GetAC(GetStat(Abilities.Dexterity));
     }
 
-    public int GetSpeed()
+    public virtual int GetSpeed()
     {
         return Speed;
     }
 
-    public int GetWeaponProf()
+    public virtual int GetWeaponProf()
     {
         return Convert.ToInt32(WeaponProf);
     }
 
-    public int GetSkill(Skills skill)
+    public virtual int GetSkill(Skills skill)
     {
         return skillManager.GetSkillProf(skill) + GetStat(skillManager.GetSkillAbility(skill));
     }
 
-    private int GetSave(Saves save)
+    protected virtual int GetSave(Saves save)
     {
         return Convert.ToInt32(SaveProf[Convert.ToInt32(save)]);
     }
 
-    public ScriptableWeapon GetMainHand()
+    public virtual ScriptableWeapon GetMainHand()
     {
         return MainHand;
     }
 
-    public ScriptableItem GetOffHand()
+    public virtual ScriptableItem GetOffHand()
     {
         return OffHand;
     }
-    private class SkillManager
+    protected class SkillManager
     {
         public Proficiency[] SkillProf;
         public Dictionary<Skills, Abilities> skillsAbilityMap;

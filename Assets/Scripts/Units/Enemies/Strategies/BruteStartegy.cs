@@ -19,7 +19,7 @@ public class BruteStartegy : IBaseStrategy
             // If the player character is within attack range, attack them
             if (path.Count <= weaponData.GetRange())
             {
-                user.UpdateTurns(wieldedWeapon.Use(user, weaponData));
+                wieldedWeapon.Use(user, weaponData);
                 continue;
             }
             // If the player character is within moving range, move towards them

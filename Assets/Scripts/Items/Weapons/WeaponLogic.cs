@@ -13,7 +13,7 @@ public class WeaponLogic : ItemLogic
     public static new WeaponLogic Instance;
 
     // This method is called when the weapon is used by an enemy unit.
-    public override int Use(BaseEnemy user, ScriptableItem itemData)
+    public override void Use(BaseEnemy user, ScriptableItem itemData)
     {
         // Cast the ScriptableItem to ScriptableWeapon and store it in weaponData.
         weaponData = (ScriptableWeapon)itemData;
@@ -37,13 +37,10 @@ public class WeaponLogic : ItemLogic
                 break;
             }
         }
-
-        // Return the number of actions used by the weapon.
-        return weaponData.GetNumOfActions();
     }
 
     // This method is called when the weapon is used by a character unit.
-    public override int Use(BaseCharacter user, ScriptableItem itemData)
+    public override void Use(BaseCharacter user, ScriptableItem itemData)
     {
         // Cast the ScriptableItem to ScriptableWeapon and store it in weaponData.
         weaponData = (ScriptableWeapon)itemData;
@@ -55,13 +52,11 @@ public class WeaponLogic : ItemLogic
         var tiles = distMatrix.Where(t => t.Value <= weaponData.GetRange());
 
         // Highlight all the tiles within the weapon's range.
-        user.ToggleDarkLightTiles(tiles, true);
+        GridManager.Instance.ToggleDarkLightTiles(tiles);
 
         // Wait for the player to select a tile to attack.
-        StartCoroutine(user.WaitForPlayerToSelect(tiles, _AttackAction));
+        StartCoroutine(Actions.Instance.WaitForPlayerToSelect(tiles, _AttackAction));
 
-        // Return the number of actions used by the weapon.
-        return weaponData.GetNumOfActions();
     }
 
     // This method is called when the player selects a tile to attack.
@@ -115,5 +110,6 @@ public class WeaponLogic : ItemLogic
         // Apply the damage to the target and increase the user's attack counter
         target.TakeDamage(damage);
         user.CharacterAttackCounterIncrease();
+        user.UpdateTurns(weaponData.GetNumOfActions());
     }
 }

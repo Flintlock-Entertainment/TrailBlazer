@@ -59,7 +59,7 @@ public abstract class Tile : MonoBehaviour
         // If the tile is currently darkened, select it.
         if (_darklight.activeSelf)
         {
-            UnitManager.Instance.Character.selectedTile = this;
+            GridManager.Instance.selectedTile = this;
         }
     }
 

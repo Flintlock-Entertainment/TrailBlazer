@@ -21,11 +21,17 @@ public class GridManager : MonoBehaviour
     // Floor and wall tiles to be used in the game grid, set in the Unity editor
     [SerializeField] private Tile _floorTile, _wallTile;
 
+    
     // Camera object used to display the game grid
     [SerializeField] private Transform _cam;
 
     // Dictionary of tiles on the game grid, accessed by their Vector2 position
     public Dictionary<Vector2, Tile> _tiles { get; private set; }
+
+    public Tile selectedTile;
+    private IEnumerable<KeyValuePair<Tile, int>> darkTiles;
+
+
 
     // Runs when the script is first initialized
     void Awake()
@@ -83,5 +89,33 @@ public class GridManager : MonoBehaviour
     {
         if (_tiles.TryGetValue(pos, out var tile)) return tile;
         return null;
+    }
+
+    public  void ToggleDarkLightTiles(IEnumerable<KeyValuePair<Tile, int>> tiles)
+    {
+        ToggleOffDarkLightTiles();
+        foreach (var tile in tiles)
+        {
+            tile.Key.DarkLight(true);
+        }
+        darkTiles = tiles;
+    }
+
+    public void ToggleOffDarkLightTiles()
+    {
+        foreach (var tile in darkTiles)
+        {
+            tile.Key.DarkLight(false);
+        }
+        selectedTile = null;
+    }
+
+    public IEnumerable<KeyValuePair<Tile, int>> ToggleDarkLightTiles(Func<KeyValuePair<Tile, int>, bool> discriminator, Tile startTile)
+    {
+        // Get the distance matrix for the current tile and show tiles that are within the character's speed range.
+        var distMatrix = BFS.GetDistanceMatrix(startTile);
+        var tiles = distMatrix.Where(discriminator);
+        ToggleDarkLightTiles(tiles);
+        return tiles;
     }
 }

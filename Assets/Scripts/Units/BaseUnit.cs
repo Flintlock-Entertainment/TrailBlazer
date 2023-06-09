@@ -55,5 +55,31 @@ public class BaseUnit : MonoBehaviour
         
     }
 
+    public virtual void AddCondition(ScriptableCondition condition)
+    {
+        condition.baseUnit = unitData;
+        unitData = condition;
+    }
+
+    public virtual void RemoveConditions(ConditionDuration currentDuration)
+    {
+
+        ScriptableCondition next = null;
+        ScriptableUnit prev = unitData;
+        while (prev.GetType() == typeof(ScriptableCondition))
+        {
+            ScriptableCondition curr = (ScriptableCondition)prev;
+            prev = curr.baseUnit;
+            if (curr.GetConditionDuration() == currentDuration)
+            {
+                next.baseUnit = prev;
+            }
+            else
+            {
+                next = curr;
+            }
+
+        }
+    }
     protected virtual void ChangeTurn() { }
 }

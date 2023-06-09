@@ -31,17 +31,15 @@ public class ItemLogic : MonoBehaviour
     }
 
     // This method is intended to be overridden by derived classes
-    public virtual int Use(BaseEnemy user, ScriptableItem itemData)
+    public virtual void Use(BaseEnemy user, ScriptableItem itemData)
     {
-        // Default implementation returns 0
-        return 0;
+
     }
 
     // This method is intended to be overridden by derived classes
-    public virtual int Use(BaseCharacter user, ScriptableItem itemData)
+    public virtual void Use(BaseCharacter user, ScriptableItem itemData)
     {
-        // Default implementation returns 0
-        return 0;
+  
     }
 
     // Instantiate an ItemLogic object based on the given ScriptableItem

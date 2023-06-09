@@ -1438,7 +1438,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1365396494}
-        m_TargetAssemblyTypeName: ActionsMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: Actions, Assembly-CSharp
         m_MethodName: StrideAction
         m_Mode: 1
         m_Arguments:
@@ -1648,7 +1648,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1365396489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f18f1c4de15b53a46b2cf22c37ae16a8, type: 3}
+  m_Script: {fileID: 11500000, guid: e265ee1fd80bb6b42ac48c9d000e336b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1385670647
@@ -1747,6 +1747,7 @@ MonoBehaviour:
   _floorTile: {fileID: 9092181047610606664, guid: 27c4a5711568de647a6fa34025a2dfbc, type: 3}
   _wallTile: {fileID: -2487533986650817379, guid: dcead580b0295c843a4ae2cda38beb02, type: 3}
   _cam: {fileID: 519420032}
+  selectedTile: {fileID: 0}
 --- !u!1 &1435046216
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,8 +2600,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1365396494}
-        m_TargetAssemblyTypeName: ActionsMenu, Assembly-CSharp
-        m_MethodName: MainHandAction
+        m_TargetAssemblyTypeName: Actions, Assembly-CSharp
+        m_MethodName: UseMainHand
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
