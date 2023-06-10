@@ -36,6 +36,8 @@ public abstract class Tile : MonoBehaviour
     void OnMouseEnter()
     {
         _highlight.SetActive(true);
+        if (OccupiedUnit != null)
+            MenuManager.Instance.ShowInformation(OccupiedUnit.unitData.GetDescription());
     }
 
     // Disables the tile's highlight when the mouse exits its collider.

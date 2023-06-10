@@ -21,20 +21,19 @@ public class MenuManager : MonoBehaviour
         Instance = this;
     }
 
-    // This method is used to set up the menu with a character's HP and speed.
     public void setupMenu(BaseCharacter character)
     {
-        // Initialize the menu with the character's HP and speed.
-        _menu.init(character.currentHP, character.unitData.GetSpeed(), character.Turns);
+        _menu.init(character.unitData.GetDescription(), character.Turns);
     }
 
-    // This method is used to update the character's HP in the menu.
     public void UpdateMenu(BaseCharacter character)
     {
-        // Update the character's HP in the menu.
-        _menu.ChangeHP(character.currentHP);
+        _menu.init(character.unitData.GetDescription(), character.Turns);
+    }
 
-        _menu.ChangeTurnCounter(character.Turns);
+    public void ShowInformation(string desc)
+    {
+        _menu.ShowInformation(desc);
     }
 
     public void AddLog(string log)

@@ -11,11 +11,10 @@ public class BaseUnit : MonoBehaviour
     public ScriptableUnit unitData;
     public Inventory inventory;
 
-    public int currentHP { get; private set; }
 
     public void init()
     {
-        currentHP = unitData.GetHP();
+        unitData.SetCurrentHP(unitData.GetHP());
     }
     public int Turns { get; protected set; } 
 
@@ -23,13 +22,16 @@ public class BaseUnit : MonoBehaviour
 
     public virtual void ResetTurn()
     {
-        Turns = 3;
+        Turns = unitData.GetActionsPerTurn();
         numOfAttacks = 0;
+        RemoveConditions(ConditionDuration.StartOfTurn, typeof(ScriptableCondition));
     }
 
     public virtual void UpdateTurns(int update)
     {
         Turns -= update;
+        if(Turns == 0)
+            RemoveConditions(ConditionDuration.EndOfTurn, typeof(ScriptableCondition));
     }
 
     public void CharacterAttackCounterIncrease()
@@ -47,8 +49,8 @@ public class BaseUnit : MonoBehaviour
         if(damage != 0)
         {
             MenuManager.Instance.AddLog($"{UnitName} took {damage} points of damage\n");
-            currentHP -= damage;
-            bool alive = currentHP > 0;
+            unitData.SetCurrentHP(-1*damage);
+            bool alive = unitData.GetCurrentHP() > 0;
             if (!alive)
                 Destroy(this.gameObject);
         }
@@ -61,18 +63,20 @@ public class BaseUnit : MonoBehaviour
         unitData = condition;
     }
 
-    public virtual void RemoveConditions(ConditionDuration currentDuration)
+    public virtual void RemoveConditions(ConditionDuration currentDuration, System.Type conitionTypeToRemove)
     {
 
-        ScriptableCondition next = null;
+        
         ScriptableUnit prev = unitData;
+        ScriptableCondition curr = null, next  = null;
         while (prev.GetType() == typeof(ScriptableCondition))
         {
-            ScriptableCondition curr = (ScriptableCondition)prev;
+            curr = (ScriptableCondition)prev;
             prev = curr.baseUnit;
-            if (curr.GetConditionDuration() == currentDuration)
+            if (curr.GetConditionDuration() == currentDuration && curr.GetType() == conitionTypeToRemove)
             {
                 next.baseUnit = prev;
+                Destroy(curr);
             }
             else
             {

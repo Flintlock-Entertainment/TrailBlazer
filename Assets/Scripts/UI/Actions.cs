@@ -16,7 +16,6 @@ public class Actions : MonoBehaviour
     }
     public void StrideAction()
     {
-        // Check if it is the player's turn.
         if (!IsPlayersTurn()) return;
         Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= character.unitData.GetSpeed();
 
@@ -87,7 +86,7 @@ public class Actions : MonoBehaviour
 
     }
 
-    public void _DemoralizeAction(IEnumerable<KeyValuePair<Tile, int>> tiles, BaseCharacter user)
+    private void _DemoralizeAction(IEnumerable<KeyValuePair<Tile, int>> tiles, BaseCharacter user)
     {
         var target = selectedTile.OccupiedUnit;
         var outcome = Utils.CalculateOutCome(character.unitData.GetSkill(Skills.Intimidation) + Utils.CheckRoll(), 10 + target.unitData.GetWillSave());
@@ -105,12 +104,33 @@ public class Actions : MonoBehaviour
                 break;
         }
         user.UpdateTurns(1);
-
     }
 
     public void RecallKnowledge()
     {
-        
+        if (!IsPlayersTurn()) return;
+        Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= 1+ character.unitData.GetStat(Abilities.Wisdom);
+
+        ChoiceOnMap(discriminator, _RecallKnowledge);
+
+    }
+
+    private void _RecallKnowledge(IEnumerable<KeyValuePair<Tile, int>> tiles, BaseCharacter user)
+    {
+        var target = selectedTile.OccupiedUnit;
+        var outcome = Utils.CalculateOutCome(character.unitData.GetSkill(Skills.Arcana) + Utils.CheckRoll(), 10 + target.unitData.GetSkill(Skills.Deception));
+        RevealedInfoCondition condition = (RevealedInfoCondition)ScriptableObject.CreateInstance(typeof(RevealedInfoCondition));
+        condition.duration = ConditionDuration.Custom;
+        switch (outcome)
+        {
+            case (OutCome.CritSuccess):
+                target.AddCondition(condition);
+                break;
+            case (OutCome.Success):
+                target.AddCondition(condition);
+                break;
+        }
+        user.UpdateTurns(1);
     }
 
     private bool IsPlayersTurn()
@@ -133,7 +153,7 @@ public class Actions : MonoBehaviour
         var tiles = GridManager.Instance.ToggleDarkLightTiles(discriminator, character.OccupiedTile);
 
         // Wait for player to select a tile and then move the character to the selected tile.
-        StartCoroutine(WaitForPlayerToSelect(tiles, _StrideAction));
+        StartCoroutine(WaitForPlayerToSelect(tiles, action));
 
     }
 }

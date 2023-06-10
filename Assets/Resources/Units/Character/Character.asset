@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Faction: 0
   UnitPrefab: {fileID: -935126524107209968, guid: 741edd6766c85a948948e6b3ae8f5965, type: 3}
+  actionsPerTurn: 3
   baseHP: 8
   classHP: 10
+  currentHP: 108
   Stats: 050000000200000004000000020000000100000000000000
   Speed: 3
   Level: 2

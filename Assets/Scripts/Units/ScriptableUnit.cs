@@ -15,6 +15,8 @@ public class ScriptableUnit : ScriptableObject
 
     [SerializeField] private int classHP;
 
+    [SerializeField] private int currentHP;
+
     [SerializeField] private int[] Stats;
 
     [SerializeField] private int Speed;
@@ -45,6 +47,7 @@ public class ScriptableUnit : ScriptableObject
         Stats = new int[6] { 0, 0, 0, 0, 0, 0 };
         SaveProf = new Proficiency[3] { Proficiency.Untrained, Proficiency.Untrained, Proficiency.Untrained };
         skillManager = new SkillManager();
+        currentHP = 0;
     }
 
     public virtual int GetReflexSave()
@@ -77,6 +80,15 @@ public class ScriptableUnit : ScriptableObject
         return baseHP + (GetStat(Abilities.Constitution) + classHP) * Level;
     }
 
+    public virtual int GetCurrentHP()
+    {
+        return currentHP;
+    }
+
+    public virtual void SetCurrentHP(int update)
+    {
+        currentHP += update;
+    }
     public virtual int GetAC()
     {
         return Head.GetAC(GetStat(Abilities.Dexterity)) + Body.GetAC(GetStat(Abilities.Dexterity)) + Legs.GetAC(GetStat(Abilities.Dexterity));
@@ -110,6 +122,19 @@ public class ScriptableUnit : ScriptableObject
     public virtual ScriptableItem GetOffHand()
     {
         return OffHand;
+    }
+
+    public virtual string GetDescription()
+    {
+        string desc =
+            "str= " + "???" + "  " + "HP= " + "???" + "/" + "???" + "\n" +
+            "dex= " + "???" + "  " + "speed= " + "???" + "\n" +
+            "con= " + "???" + "  " + "AC= " + "???" + "\n" +
+            "int= " + "???" + "  " + "Reflex= " + "???" + "\n" +
+            "wis= " + "???" + "  " + "Fortitude= " + "???" + "\n" +
+            "cha= " + "???" + "  " + "Will= " + "???" + "\n";
+
+        return desc;
     }
     protected class SkillManager
     {

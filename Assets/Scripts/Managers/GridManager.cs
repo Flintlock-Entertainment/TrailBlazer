@@ -29,7 +29,7 @@ public class GridManager : MonoBehaviour
     public Dictionary<Vector2, Tile> _tiles { get; private set; }
 
     public Tile selectedTile;
-    private IEnumerable<KeyValuePair<Tile, int>> darkTiles;
+    private IEnumerable<KeyValuePair<Tile, int>> darkTiles = new List<KeyValuePair<Tile, int>>();
 
 
 

@@ -30,7 +30,7 @@ public abstract class ScriptableCondition : ScriptableUnit
 
     public override int GetActionsPerTurn()
     {
-        return base.GetActionsPerTurn();
+        return baseUnit.GetActionsPerTurn();
     }
 
     public override int GetHP()
@@ -38,6 +38,15 @@ public abstract class ScriptableCondition : ScriptableUnit
         return baseUnit.GetHP();
     }
 
+    public override int GetCurrentHP()
+    {
+        return baseUnit.GetCurrentHP();
+    }
+
+    public override void SetCurrentHP(int update)
+    {
+        baseUnit.SetCurrentHP(update);
+    }
     public override int GetAC()
     {
         return baseUnit.GetAC();
@@ -67,16 +76,22 @@ public abstract class ScriptableCondition : ScriptableUnit
         return baseUnit.GetOffHand();
     }
 
+    public override string GetDescription()
+    {
+        return baseUnit.GetDescription();
+    }
+
     public ConditionDuration GetConditionDuration()
     {
         return duration;
     }
 
+
 }
 
 public enum ConditionDuration
 {
-    OneAction = 0,
+    Custom = 0,
     EndOfTurn = 1,
     StartOfTurn = 2
 }
