@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e8625ebe28f144885fb0a46fbb6bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLogLines: 10
+  maxLogLines: 50
   logText: {fileID: 252017116}
 --- !u!114 &237101263
 MonoBehaviour:
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 252017115}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
