@@ -79,7 +79,7 @@ public class UnitManager : MonoBehaviour
         for (int i = 0; i < enemyCount; i++)
         {
             // Get a random enemy prefab.
-            var randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy);
+            var randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy, PlayerPrefs.GetInt("Level"));
 
             // Instantiate the enemy prefab.
             var spawnedEnemy = Instantiate(randomPrefab);
@@ -125,6 +125,10 @@ public class UnitManager : MonoBehaviour
     private T GetRandomUnit<T>(Faction faction) where T : BaseUnit
     {
         return (T)_units.Where(u => u.Faction == faction).OrderBy(o => Random.value).First().UnitPrefab;
+    }
+    private T GetRandomUnit<T>(Faction faction, int level) where T : BaseUnit
+    {
+        return (T)_units.Where(u => u.Faction == faction && u.GetLevel() == level).OrderBy(o => Random.value).First().UnitPrefab;
     }
 
     public void CharacterDead()

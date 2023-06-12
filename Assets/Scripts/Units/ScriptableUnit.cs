@@ -124,6 +124,11 @@ public class ScriptableUnit : ScriptableObject
         Coins += update;
     }
 
+    public virtual int GetLevel()
+    {
+        return Level;
+    }
+
     public virtual int GetWeaponProf()
     {
         return Convert.ToInt32(WeaponProf);

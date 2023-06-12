@@ -70,6 +70,7 @@ namespace Map
             switch (mapNode.Node.nodeType)
             {
                 case NodeType.MinorEnemy:
+                    PlayerPrefs.SetInt("Level", 1);
                     SceneManager.LoadScene("CombatTutorScene");
                     break;
                 case NodeType.EliteEnemy:
@@ -82,6 +83,8 @@ namespace Map
                 case NodeType.Store:
                     break;
                 case NodeType.Boss:
+                    PlayerPrefs.SetInt("Level", 3);
+                    SceneManager.LoadScene("CombatScene");
                     break;
                 case NodeType.Mystery:
                     SceneManager.LoadScene("PreAbs(14)");

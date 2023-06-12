@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,14 +45,12 @@ public class WeaponLogic : ItemLogic
     {
         // Cast the ScriptableItem to ScriptableWeapon and store it in weaponData.
         weaponData = (ScriptableWeapon)itemData;
-        // Calculate the distance matrix from the user's current position using BFS algorithm.
-        var distMatrix = BFS.GetDistanceMatrix(user.OccupiedTile);
-
+        Debug.Log(weaponData.GetRange());
         // Get all the tiles within the weapon's range.
-        var tiles = distMatrix.Where(t => t.Value <= weaponData.GetRange());
+        Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= weaponData.GetRange();
 
         // Highlight all the tiles within the weapon's range.
-        GridManager.Instance.ToggleDarkLightTiles(tiles);
+        var tiles = GridManager.Instance.ToggleDarkLightTiles(discriminator, user.OccupiedTile);
 
         // Wait for the player to select a tile to attack.
         StartCoroutine(Actions.Instance.WaitForPlayerToSelect(tiles, _AttackAction));

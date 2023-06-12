@@ -125,7 +125,8 @@ public class CharacterCreationManager : MonoBehaviour
 
     private void LoadMainMap()
     {
-        SceneManager.LoadScene("MainMap");
+        SceneManager.LoadSceneAsync("MainMap", LoadSceneMode.Additive);
+        
     }
 
     public void Defender()

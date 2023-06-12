@@ -57,6 +57,20 @@ public abstract class ScriptableCondition : ScriptableUnit
         return baseUnit.GetSpeed();
     }
 
+    public override int GetCoins()
+    {
+        return baseUnit.GetCoins();
+    }
+
+    public override void UpdateCoins(int update)
+    {
+        baseUnit.UpdateCoins(update);
+    }
+
+    public override int GetLevel()
+    {
+        return baseUnit.GetLevel();
+    }
     public override int GetWeaponProf()
     {
         return baseUnit.GetWeaponProf();

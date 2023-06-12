@@ -26,6 +26,6 @@ MonoBehaviour:
   Description: 
   DiceNumber: 6
   Range: 5
-  AmmoCount: 4
+  AmmoCount: 100
   ReloadTime: 1
   Loaded: {fileID: 11400000, guid: 4ea065196fe104c4ca68e63b82c906dc, type: 2}
