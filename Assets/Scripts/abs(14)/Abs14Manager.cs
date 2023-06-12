@@ -75,6 +75,7 @@ public class Abs14Manager : MonoBehaviour
     private void HitClicked()
     {
         Debug.Log("Hit");
+        playerScript.cardSelected = -1;
         if (numOfTurns <= 3 && standClicks == 0)
         {
             StartCoroutine(playerScript.DrawCard());
@@ -92,13 +93,15 @@ public class Abs14Manager : MonoBehaviour
             RoundOver();
         if(standClicks == 1)
             StartCoroutine( HitDealer());
-        standBtnText.text = "Call";
+        standBtnText.text = "Wait";
     }
 
     private IEnumerator HitDealer()
     {
         numOfTurns = 1;
         Debug.Log("Dealers turn");
+        yield return new WaitForSeconds(0.2f);
+
         while (dealerScript.handValue < 20 && dealerScript.handValue > 8 && numOfTurns <= 3)
         {
             Debug.Log("Dealers turn loop");
@@ -106,6 +109,7 @@ public class Abs14Manager : MonoBehaviour
             yield return dealerScript.DrawCard();
         }
         dealerFinished = true;
+        standBtnText.text = "Call";
         Debug.Log("Dealers finished");
     }
 
