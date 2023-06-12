@@ -11,10 +11,10 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] TextMeshPro tutorialText;
 
     // an array of game objects to show different pop-ups
-    [SerializeField] public GameObject[] popUps = new GameObject[4];
+    [SerializeField] public GameObject[] popUps;
 
     // an array of strings to store the text for each pop-up
-    [SerializeField] public string[] popUpText = new string[4];
+    [SerializeField] public string[] popUpText;
 
     // an index to keep track of which pop-up is currently being shown
     private int popUpIndex;

@@ -10,7 +10,9 @@ public class Oscillator : MonoBehaviour
     [SerializeField]
     float motionLimit;
     [SerializeField]
-    float offSet;
+    float xOffSet;
+    [SerializeField]
+    float yOffSet;
     [SerializeField]
     bool leftRight = true;
     float xTime;
@@ -21,11 +23,11 @@ public class Oscillator : MonoBehaviour
     void Start()
     {
         Debug.Log(transform.position.x);
-        objectSpeed = 3;
-        motionLimit = 0.5f;
         xTime = transform.position.x;
         yTime = transform.position.y;
         zTime = transform.position.z;
+        xOffSet = transform.position.x;
+        yOffSet = transform.position.y; ;
     }
 
 
@@ -38,13 +40,13 @@ public class Oscillator : MonoBehaviour
         {
             xTime += Time.deltaTime;
             yTime = transform.position.y;
-            transform.position = new Vector3(Mathf.Sin(xTime * objectSpeed) * motionLimit + offSet, yTime, zTime); // osilate the object left and right per frame * the speed and the motion limit.
+            transform.position = new Vector3(Mathf.Sin(xTime * objectSpeed) * motionLimit + xOffSet, yTime, zTime); // osilate the object left and right per frame * the speed and the motion limit.
         }
         else
         {
             xTime = transform.position.x;
             yTime += Time.deltaTime;
-            transform.position = new Vector3(xTime, Mathf.Sin(yTime * objectSpeed) * motionLimit, zTime); // osilate the object up and down per frame * the speed and the motion limit.
+            transform.position = new Vector3(xTime, Mathf.Sin(yTime * objectSpeed) * motionLimit + yOffSet, zTime); // osilate the object up and down per frame * the speed and the motion limit.
         }
 
     }
