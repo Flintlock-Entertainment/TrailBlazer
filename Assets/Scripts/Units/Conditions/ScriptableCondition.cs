@@ -43,9 +43,9 @@ public abstract class ScriptableCondition : ScriptableUnit
         return baseUnit.GetCurrentHP();
     }
 
-    public override void SetCurrentHP(int update)
+    public override void UpdateCurrentHP(int update)
     {
-        baseUnit.SetCurrentHP(update);
+        baseUnit.UpdateCurrentHP(update);
     }
     public override int GetAC()
     {

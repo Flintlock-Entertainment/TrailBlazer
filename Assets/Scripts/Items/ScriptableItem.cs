@@ -7,7 +7,9 @@ public class ScriptableItem : ScriptableObject
 {
     [SerializeField] public ItemLogic Prefab;
     [SerializeField] public Sprite ItemSprite;
-    [SerializeField] private string itamName;
+    [SerializeField] private string itemName;
+    [SerializeField] public Layer layer;
+
     [SerializeField] private int Bulk;
     [SerializeField] private int Price;
     [SerializeField] private int Hands;
@@ -16,6 +18,7 @@ public class ScriptableItem : ScriptableObject
     [SerializeField] private int numOfActions;
     [SerializeField] private Rarity rarity;
     [SerializeField] private string Description;
+    
 
     public virtual ItemLogic GetItem()
     {
@@ -26,6 +29,11 @@ public class ScriptableItem : ScriptableObject
     {
         return numOfActions;
     }
+
+    public virtual string GetItemName()
+    {
+        return itemName;
+    }
 }
 
 public enum Rarity
@@ -33,4 +41,10 @@ public enum Rarity
     Common,
     UnCommon,
     Rare
+}
+
+public enum Layer
+{
+    LastLayer = 0,
+    NotLastLayer = 1
 }

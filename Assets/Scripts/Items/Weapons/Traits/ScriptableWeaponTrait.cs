@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class ScriptableWeaponTrait : ScriptableWeapon
 {
     public ScriptableWeapon baseWeapon;
-
+ 
     public override int GetAttackRoll(BaseUnit user)
     {
         return baseWeapon.GetAttackRoll(user);
@@ -44,6 +44,11 @@ public abstract class ScriptableWeaponTrait : ScriptableWeapon
     public override int GetNumOfActions()
     {
         return baseWeapon.GetNumOfActions();
+    }
+
+    public override string GetItemName()
+    {
+        return baseWeapon.GetItemName();
     }
 
 }

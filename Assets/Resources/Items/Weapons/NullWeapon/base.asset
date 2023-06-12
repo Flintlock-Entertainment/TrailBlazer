@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80764ee81c18d6c4fb27646a4e22aabd, type: 3}
-  m_Name: DaggerAgileTrait
+  m_Script: {fileID: 11500000, guid: 54dbb1389f7531547bdaf5a651df2283, type: 3}
+  m_Name: base
   m_EditorClassIdentifier: 
   Prefab: {fileID: 0}
   ItemSprite: {fileID: 0}
-  itemName: 
-  layer: 1
-  Bulk: 1
-  Price: 1
-  Hands: 1
+  itemName: NullWeapon
+  layer: 0
+  Bulk: 0
+  Price: 0
+  Hands: 0
   Hardness: 0
   Durability: 0
   numOfActions: 0
@@ -26,4 +26,3 @@ MonoBehaviour:
   Description: 
   DiceNumber: 0
   Range: 0
-  baseWeapon: {fileID: 11400000, guid: 344dde36424f6f84d9b4de4b195a17d6, type: 2}

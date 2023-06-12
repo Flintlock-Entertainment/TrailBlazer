@@ -56,7 +56,7 @@ public abstract class Tile : MonoBehaviour
     void OnMouseDown()
     {
         // Only allow player input during their turn.
-        if (!GameManager.Instance.isPlayersTurn()) return;
+        if (!CombatManager.Instance.isPlayersTurn()) return;
 
         // If the tile is currently darkened, select it.
         if (_darklight.activeSelf)

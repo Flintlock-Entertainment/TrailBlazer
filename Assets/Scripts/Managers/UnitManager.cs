@@ -63,7 +63,7 @@ public class UnitManager : MonoBehaviour
 
        // _cam.transform.parent = Character.transform;
         // Change the game state to spawn enemies.
-        GameManager.Instance.ChangeState(GameState.SpawnEnemies);
+        CombatManager.Instance.ChangeState(CombatState.SpawnEnemies);
     }
 
     // This method is used to spawn enemies.
@@ -73,7 +73,7 @@ public class UnitManager : MonoBehaviour
         var distMatrix = BFS.GetDistanceMatrix(GridManager.Instance._tiles[Character.GetCurrentPosition()]);
 
         // Set the number of enemies to spawn.
-        var enemyCount = 4;
+        var enemyCount = 1;
 
         // Spawn the enemies.
         for (int i = 0; i < enemyCount; i++)
@@ -96,7 +96,7 @@ public class UnitManager : MonoBehaviour
         }
 
         // Change the game state to the player's turn.
-        GameManager.Instance.ChangeState(GameState.PlayersTurn);
+        CombatManager.Instance.ChangeState(CombatState.PlayersTurn);
     }
 
     public void PlayerTurn()
@@ -113,7 +113,7 @@ public class UnitManager : MonoBehaviour
             yield return enemy.EnemyTurn(); // Wait for the enemy to finish its turn.
         }
 
-        GameManager.Instance.ChangeState(GameState.PlayersTurn); // Change the game state to player's turn after all enemies have taken their turns.
+        CombatManager.Instance.ChangeState(CombatState.PlayersTurn); // Change the game state to player's turn after all enemies have taken their turns.
     }
 
     // This method returns a random unit of type T from the units list with the specified faction.

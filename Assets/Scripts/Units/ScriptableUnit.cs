@@ -31,9 +31,9 @@ public class ScriptableUnit : ScriptableObject
 
     private SkillManager skillManager;
 
-    [SerializeField] private ScriptableWeapon MainHand;
+    [SerializeField] public ScriptableWeapon MainHand;
 
-    [SerializeField] private ScriptableItem OffHand;
+    [SerializeField] public ScriptableItem OffHand;
 
     [SerializeField] private ScriptableWearableItem Head;
 
@@ -50,6 +50,10 @@ public class ScriptableUnit : ScriptableObject
         currentHP = 0;
     }
 
+    private void Awake()
+    {
+        currentHP = 0;
+    }
     public virtual int GetReflexSave()
     {
         return GetSave(Saves.Reflex) + GetStat(Abilities.Dexterity);
@@ -70,6 +74,11 @@ public class ScriptableUnit : ScriptableObject
         return Stats[Convert.ToInt32(ability)];
     }
 
+    public virtual void SetStat(Abilities ability, int stat)
+    {
+         Stats[Convert.ToInt32(ability)] = stat;
+    }
+
     public virtual int GetActionsPerTurn()
     {
         return actionsPerTurn;
@@ -84,8 +93,12 @@ public class ScriptableUnit : ScriptableObject
     {
         return currentHP;
     }
+    public virtual void SetCurrentHP(int value)
+    {
+        currentHP = value;
+    }
 
-    public virtual void SetCurrentHP(int update)
+    public virtual void UpdateCurrentHP(int update)
     {
         currentHP += update;
     }
@@ -127,12 +140,12 @@ public class ScriptableUnit : ScriptableObject
     public virtual string GetDescription()
     {
         string desc =
-            "str= " + "???" + "  " + "HP= " + "???" + "/" + "???" + "\n" +
-            "dex= " + "???" + "  " + "speed= " + "???" + "\n" +
-            "con= " + "???" + "  " + "AC= " + "???" + "\n" +
-            "int= " + "???" + "  " + "Reflex= " + "???" + "\n" +
-            "wis= " + "???" + "  " + "Fortitude= " + "???" + "\n" +
-            "cha= " + "???" + "  " + "Will= " + "???" + "\n";
+            "str= " + "?" + "  " + "HP= " + "?" + "/" + "?" + "\n" +
+            "dex= " + "?" + "  " + "speed= " + "?" + "\n" +
+            "con= " + "?" + "  " + "AC= " + "?" + "\n" +
+            "int= " + "?" + "  " + "Reflex= " + "?" + "\n" +
+            "wis= " + "?" + "  " + "Fortitude= " + "?" + "\n" +
+            "cha= " + "?" + "  " + "Will= " + "?" + "\n";
 
         return desc;
     }

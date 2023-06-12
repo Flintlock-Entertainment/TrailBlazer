@@ -10,8 +10,9 @@ public class BruteStartegy : IBaseStrategy
         while (user.Turns > 0)
         {
             yield return new WaitForSeconds(0.5f);
+            var target = UnitManager.Instance.Character.OccupiedTile;
             // Get the shortest path to the player character
-            var path = BFS.GetShortestPath(user.OccupiedTile, UnitManager.Instance.Character.OccupiedTile);
+            var path = BFS.GetShortestPath(user.OccupiedTile, target);
 
             var weaponData = user.unitData.GetMainHand();
 
@@ -27,6 +28,29 @@ public class BruteStartegy : IBaseStrategy
             {
                 path.Last.Value.SetUnit(user); // Set the enemy's position to the last tile in the path
             }
+            //if(path.Count == 0)
+           // {
+              //  Debug.Log("unreachable");
+              //  var distMatrix = BFS.GetDistanceMatrix(user.OccupiedTile);
+
+//float minDist = CalculateDistance(user.OccupiedTile.getPosition(), target.getPosition());
+              //  Tile minDistTile = user.OccupiedTile;
+              //  float tempDist;
+               // foreach ( var tile in distMatrix)
+              //  {
+               ///     tempDist = CalculateDistance(tile.Key.getPosition(), target.getPosition());
+                 //   if(tempDist < minDist)
+                 //   {
+                 //       minDist = tempDist;
+                 //       minDistTile = tile.Key;
+                 //   }
+               // }
+               // path = BFS.GetShortestPath(user.OccupiedTile, minDistTile);
+               // Tile[] _path = new Tile[path.Count];
+              //  path.CopyTo(_path, 0);
+              //  _path[Mathf.Min(user.unitData.GetSpeed(), path.Count - 1)].SetUnit(user);
+
+           // }
             // If the player character is out of range, move as far as possible towards them
             else
             {
@@ -37,5 +61,12 @@ public class BruteStartegy : IBaseStrategy
             }
             user.UpdateTurns(1);
         }
+    }
+
+    private float CalculateDistance(Vector2 pos1, Vector2 pos2)
+    {
+        float dx = pos1.x - pos2.x;
+        float dy = pos1.y - pos2.y;
+        return Mathf.Sqrt(dx * dx + dy * dy);
     }
 }

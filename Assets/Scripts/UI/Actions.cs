@@ -53,7 +53,7 @@ public class Actions : MonoBehaviour
     private void _TripAction(IEnumerable<KeyValuePair<Tile, int>> tiles, BaseCharacter user)
     {
         var target = selectedTile.OccupiedUnit;
-        var outcome = Utils.CalculateOutCome(character.unitData.GetSkill(Skills.Athletics) + Utils.CheckRoll(), 10 + target.unitData.GetReflexSave());
+        var outcome = Utils.CalculateOutCome(user.unitData.GetSkill(Skills.Athletics) + Utils.CheckRoll(), 10 + target.unitData.GetReflexSave());
         ProneCondition condition = (ProneCondition)ScriptableObject.CreateInstance(typeof(ProneCondition));
         condition.duration = ConditionDuration.StartOfTurn;
         switch (outcome)
@@ -65,8 +65,11 @@ public class Actions : MonoBehaviour
             case (OutCome.Success):
                 target.AddCondition(condition);
                 break;
+            case (OutCome.Fail):
+                MenuManager.Instance.AddLog("You failed to trip the enemy, try again.\n");
+                break;
             case (OutCome.CritFail):
-                user.AddCondition(condition);
+                MenuManager.Instance.AddLog("You have fallen and got up\n");
                 user.UpdateTurns(1);
                 break;
         }
@@ -81,7 +84,7 @@ public class Actions : MonoBehaviour
     public void Demoralize()
     {
         if (!IsPlayersTurn()) return;
-        Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= 1;
+        Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= character.unitData.GetStat(Abilities.Charisma);
         ChoiceOnMap(discriminator, _DemoralizeAction);
 
     }
@@ -89,7 +92,7 @@ public class Actions : MonoBehaviour
     private void _DemoralizeAction(IEnumerable<KeyValuePair<Tile, int>> tiles, BaseCharacter user)
     {
         var target = selectedTile.OccupiedUnit;
-        var outcome = Utils.CalculateOutCome(character.unitData.GetSkill(Skills.Intimidation) + Utils.CheckRoll(), 10 + target.unitData.GetWillSave());
+        var outcome = Utils.CalculateOutCome(user.unitData.GetSkill(Skills.Intimidation) + Utils.CheckRoll(), 10 + target.unitData.GetWillSave());
         FrightenedCondition condition = (FrightenedCondition)ScriptableObject.CreateInstance(typeof(FrightenedCondition));
         condition.duration = ConditionDuration.EndOfTurn;
         switch (outcome)
@@ -101,6 +104,10 @@ public class Actions : MonoBehaviour
             case (OutCome.Success):
                 condition.conditionLevel = 1;
                 target.AddCondition(condition);
+                break;
+            case (OutCome.Fail):
+            case (OutCome.CritFail):
+                MenuManager.Instance.AddLog("You failed to scare the enemy, try again.\n");
                 break;
         }
         user.UpdateTurns(1);
@@ -118,16 +125,18 @@ public class Actions : MonoBehaviour
     private void _RecallKnowledge(IEnumerable<KeyValuePair<Tile, int>> tiles, BaseCharacter user)
     {
         var target = selectedTile.OccupiedUnit;
-        var outcome = Utils.CalculateOutCome(character.unitData.GetSkill(Skills.Arcana) + Utils.CheckRoll(), 10 + target.unitData.GetSkill(Skills.Deception));
+        var outcome = Utils.CalculateOutCome(user.unitData.GetSkill(Skills.Arcana) + Utils.CheckRoll(), 10 + target.unitData.GetSkill(Skills.Deception));
         RevealedInfoCondition condition = (RevealedInfoCondition)ScriptableObject.CreateInstance(typeof(RevealedInfoCondition));
         condition.duration = ConditionDuration.Custom;
         switch (outcome)
         {
             case (OutCome.CritSuccess):
-                target.AddCondition(condition);
-                break;
             case (OutCome.Success):
                 target.AddCondition(condition);
+                break;
+            case (OutCome.Fail):
+            case (OutCome.CritFail):
+                MenuManager.Instance.AddLog("You failed to get knowledge, try again.\n");
                 break;
         }
         user.UpdateTurns(1);
@@ -135,7 +144,7 @@ public class Actions : MonoBehaviour
 
     private bool IsPlayersTurn()
     {
-        return GameManager.Instance.isPlayersTurn();
+        return CombatManager.Instance.isPlayersTurn();
     }
 
     // Wait for the player to select a tile and then call the given action with that tile

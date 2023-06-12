@@ -49,7 +49,7 @@ public class BaseUnit : MonoBehaviour
         if(damage != 0)
         {
             MenuManager.Instance.AddLog($"{UnitName} took {damage} points of damage\n");
-            unitData.SetCurrentHP(-1*damage);
+            unitData.UpdateCurrentHP(-1*damage);
             bool alive = unitData.GetCurrentHP() > 0;
             if (!alive)
                 Destroy(this.gameObject);
@@ -69,13 +69,19 @@ public class BaseUnit : MonoBehaviour
         
         ScriptableUnit prev = unitData;
         ScriptableCondition curr = null, next  = null;
-        while (prev.GetType() == typeof(ScriptableCondition))
+        Debug.Log("RemoveConditions, duration: " + currentDuration);
+        while (prev is ScriptableCondition )
         {
             curr = (ScriptableCondition)prev;
             prev = curr.baseUnit;
-            if (curr.GetConditionDuration() == currentDuration && curr.GetType() == conitionTypeToRemove)
+            Debug.Log("RemoveConditions, test1 : " + (curr is ScriptableCondition) + " test2 :" + (curr.GetConditionDuration() == currentDuration));
+            if (curr.GetConditionDuration() == currentDuration && curr is ScriptableCondition)
             {
-                next.baseUnit = prev;
+                Debug.Log("Condition Removed");
+                if (next != null)
+                    next.baseUnit = prev;
+                else
+                    unitData = prev;
                 Destroy(curr);
             }
             else

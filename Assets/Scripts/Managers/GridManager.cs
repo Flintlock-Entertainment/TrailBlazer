@@ -69,7 +69,7 @@ public class GridManager : MonoBehaviour
         _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
 
         // Changes the game state to spawning the player character
-        GameManager.Instance.ChangeState(GameState.SpawnCharacter);
+        CombatManager.Instance.ChangeState(CombatState.SpawnCharacter);
     }
 
     // Returns a random tile from the left half of the game grid that is walkable

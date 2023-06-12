@@ -8,7 +8,7 @@ It inherits from the BaseUnit class.
 */
 public class BaseCharacter : BaseUnit
 {
-    public Tile selectedTile = null;
+    public Tile selectedTile => GridManager.Instance.selectedTile;
     //Override the TakeDamage function from BaseUnit to include updating the menu.
     public override void TakeDamage(int damage)
     {
@@ -33,6 +33,6 @@ public class BaseCharacter : BaseUnit
     protected override void ChangeTurn()
     {
         if( Turns == 0)
-            GameManager.Instance.ChangeState(GameState.EnemiesTurn);
+            CombatManager.Instance.ChangeState(CombatState.EnemiesTurn);
     }
 }

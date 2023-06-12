@@ -6,7 +6,7 @@ public class BFS
 {
     // This private method implements the Breadth-First Search algorithm and returns a tuple containing a dictionary of the distances
     // between the start tile and all other tiles in the grid, and an array of the previous tiles visited during the search.
-    static private (Dictionary<Tile, int>, Tile[]) BFSFunction(Tile start)
+    static private (Dictionary<Tile, int>, Tile[]) BFSFunction(Tile start, Tile target = null, bool filterOccupied = false)
     {
         // Get the dictionary of all tiles in the grid.
         var tiles = GridManager.Instance._tiles;
@@ -74,7 +74,20 @@ public class BFS
             foreach (var neighbor in neighbors)
             {
                 int neighborPos = PosToInt(neighbor.getPosition());
-                if (!visited[neighborPos] && neighbor._isWalkable)
+                //if (target != null && target == neighbor)
+                //{
+                    
+                 //   distMatrix[neighbor] = distMatrix[s] + 1;
+                 //   prev[neighborPos] = s;
+                 //   return (distMatrix, prev);
+                //}
+                bool walkableTest;
+                if (filterOccupied)
+                    walkableTest = neighbor.Walkable;
+                else
+                    walkableTest = neighbor._isWalkable;
+
+                if (!visited[neighborPos] && walkableTest)
                 {
                     queue.AddLast(neighbor);
                     if (distMatrix[neighbor] > distMatrix[s] + 1)

@@ -44,7 +44,6 @@ public class WeaponLogic : ItemLogic
     {
         // Cast the ScriptableItem to ScriptableWeapon and store it in weaponData.
         weaponData = (ScriptableWeapon)itemData;
-
         // Calculate the distance matrix from the user's current position using BFS algorithm.
         var distMatrix = BFS.GetDistanceMatrix(user.OccupiedTile);
 
@@ -86,7 +85,10 @@ public class WeaponLogic : ItemLogic
         MenuManager.Instance.AddLog($"{user.UnitName} attacked {target.UnitName}\n");
 
         // Calculate the outcome of the attack using the weapon's attack roll and the target's armor class.
-        var outCome = Utils.CalculateOutCome(weaponData.GetAttackRoll(user), target.unitData.GetAC());
+        int roll = weaponData.GetAttackRoll(user);
+        if (roll == -1)
+            return;
+        var outCome = Utils.CalculateOutCome(roll, target.unitData.GetAC());
 
         // Determine the damage dealt based on the outcome of the attack.
         int damage;

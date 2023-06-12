@@ -24,6 +24,6 @@ public class BaseEnemy : BaseUnit
     // Override the base method for changing turns
     protected override void ChangeTurn()
     {
-        GameManager.Instance.ChangeState(GameState.PlayersTurn); // Change the game state to the player's turn
+        CombatManager.Instance.ChangeState(CombatState.PlayersTurn); // Change the game state to the player's turn
     }
 }

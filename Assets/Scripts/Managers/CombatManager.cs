@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class GameManager : MonoBehaviour
+public class CombatManager : MonoBehaviour
 {
     // GameManager is a singleton, so we store a reference to it in Instance
-    public static GameManager Instance;
+    public static CombatManager Instance;
 
     // GameState stores the current state of the game
-    public GameState gameState;
+    public CombatState gameState;
 
     // Set the GameManager instance to this GameManager on Awake()
     void Awake()
@@ -21,11 +21,11 @@ public class GameManager : MonoBehaviour
     // Start the game by changing the GameState to GenerateGrid
     void Start()
     {
-        ChangeState(GameState.GenerateGrid);
+        ChangeState(CombatState.GenerateGrid);
     }
 
     // Change the state of the game to newState
-    public void ChangeState(GameState newState)
+    public void ChangeState(CombatState newState)
     {
         // Set the GameState to newState
         gameState = newState;
@@ -33,22 +33,22 @@ public class GameManager : MonoBehaviour
         // Use a switch statement to determine which action to take based on the GameState
         switch (newState)
         {
-            case GameState.GenerateGrid:
+            case CombatState.GenerateGrid:
                 // Call the GenerateGrid method in the GridManager
                 GridManager.Instance.GenerateGrid();
                 break;
-            case GameState.SpawnCharacter:
+            case CombatState.SpawnCharacter:
                 // Call the SpawnCharacter method in the UnitManager
                 UnitManager.Instance.SpawnCharacter();
                 break;
-            case GameState.SpawnEnemies:
+            case CombatState.SpawnEnemies:
                 // Call the SpawnEnemies method in the UnitManager
                 UnitManager.Instance.SpawnEnemies();
                 break;
-            case GameState.PlayersTurn:
+            case CombatState.PlayersTurn:
                 UnitManager.Instance.PlayerTurn();
                 break;
-            case GameState.EnemiesTurn:
+            case CombatState.EnemiesTurn:
                 // Start the EnemiesTurn coroutine in the UnitManager
                 StartCoroutine(UnitManager.Instance.EnemiesTurn());
                 break;
@@ -61,19 +61,19 @@ public class GameManager : MonoBehaviour
     // Check if it is currently the player's turn
     public bool isPlayersTurn()
     {
-        return gameState == GameState.PlayersTurn;
+        return gameState == CombatState.PlayersTurn;
     }
 
     // Check if it is currently the enemy's turn
     public bool isEnemiesTurn()
     {
-        return gameState == GameState.EnemiesTurn;
+        return gameState == CombatState.EnemiesTurn;
     }
 }
 
 // Define an enum to represent the different states of the game
 
-public enum GameState
+public enum CombatState
 {
     GenerateGrid = 0,
     SpawnCharacter = 1,
