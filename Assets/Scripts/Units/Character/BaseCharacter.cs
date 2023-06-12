@@ -14,7 +14,10 @@ public class BaseCharacter : BaseUnit
     {
         bool alive = unitData.GetCurrentHP() > 0;
         if (!alive)
-            CombatManager.Instance.ChangeState(CombatState.Lose);
+        {
+            UnitManager.Instance.CharacterDead() ;
+            
+        }
     }
     //Override the TakeDamage function from BaseUnit to include updating the menu.
     public override void TakeDamage(int damage)

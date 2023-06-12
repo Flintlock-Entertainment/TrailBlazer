@@ -13,11 +13,16 @@ public class UnitManager : MonoBehaviour
     // This is a private list of ScriptableUnits.
     private List<ScriptableUnit> _units;
 
+  
+
     // This is a public field for the character.
     public BaseCharacter Character;
 
     // This is a public list of BaseEnemies.
     public List<BaseEnemy> Enemies;
+
+    public bool characterDead;
+
 
     //[SerializeField] private Transform _cam;
 
@@ -35,6 +40,7 @@ public class UnitManager : MonoBehaviour
     // This method is used to spawn the player's character.
     public void SpawnCharacter()
     {
+        characterDead = false;
         // Get a random character prefab.
         var randomPrefab = GetRandomUnit<BaseCharacter>(Faction.Character);
 
@@ -62,6 +68,7 @@ public class UnitManager : MonoBehaviour
     // This method is used to spawn enemies.
     public void SpawnEnemies()
     {
+        
         // Get the distance matrix.
         var distMatrix = BFS.GetDistanceMatrix(GridManager.Instance._tiles[Character.GetCurrentPosition()]);
 
@@ -120,9 +127,28 @@ public class UnitManager : MonoBehaviour
         return (T)_units.Where(u => u.Faction == faction).OrderBy(o => Random.value).First().UnitPrefab;
     }
 
+    public void CharacterDead()
+    {
+        characterDead = true;
+        EndCombat();
+    }
+
     public void RemoveEnemy(BaseEnemy enemy)
     {
         Enemies.Remove(enemy);
-        CombatManager.Instance.ChangeState(CombatState.Win);
+        if (Enemies.Count == 0)
+        {
+            EndCombat();
+        }
+    }
+
+    private void EndCombat()
+    {
+        if (characterDead)
+            CombatManager.Instance.ChangeState(CombatState.Lose);
+        else
+            CombatManager.Instance.ChangeState(CombatState.Win);
+
+
     }
 }
