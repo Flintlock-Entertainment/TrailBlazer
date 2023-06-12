@@ -16,7 +16,7 @@ public class RestManager : MonoBehaviour
 
     public void BackToMap()
     {
-
+        SceneManager.LoadScene("MainMap");
     }
     
 }

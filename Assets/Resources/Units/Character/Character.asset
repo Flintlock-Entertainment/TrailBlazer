@@ -17,16 +17,17 @@ MonoBehaviour:
   actionsPerTurn: 3
   baseHP: 8
   classHP: 10
-  currentHP: 35
-  Stats: 050000000200000004000000020000000100000000000000
+  currentHP: 34
+  Stats: 030000000300000003000000000000000300000000000000
   Speed: 3
+  Coins: 50
   Level: 2
   Languages:
   - '"common"'
   SaveProf: 020000000200000002000000
   WeaponProf: 2
-  MainHand: {fileID: 11400000, guid: f6715cf2234b24348825529f9fe35b26, type: 2}
-  OffHand: {fileID: 0}
+  MainHand: {fileID: 11400000, guid: 019e0ba629e420041ab5a36f62209486, type: 2}
+  OffHand: {fileID: 11400000, guid: 019e0ba629e420041ab5a36f62209486, type: 2}
   Head: {fileID: 11400000, guid: d7cffe9d216cdd54f8c3af5e58a26847, type: 2}
   Body: {fileID: 11400000, guid: ec5c330e9c7e8714d8328c85aab3448c, type: 2}
   Legs: {fileID: 11400000, guid: d7cffe9d216cdd54f8c3af5e58a26847, type: 2}

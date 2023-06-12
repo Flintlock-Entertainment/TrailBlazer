@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class CombatManager : MonoBehaviour
@@ -52,6 +53,12 @@ public class CombatManager : MonoBehaviour
                 // Start the EnemiesTurn coroutine in the UnitManager
                 StartCoroutine(UnitManager.Instance.EnemiesTurn());
                 break;
+            case CombatState.Win:
+                SceneManager.LoadScene("MainMap");
+                break;
+            case CombatState.Lose:
+                SceneManager.LoadScene("Death");
+                break;
             default:
                 // If the GameState is not recognized, throw an exception
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -79,5 +86,7 @@ public enum CombatState
     SpawnCharacter = 1,
     SpawnEnemies = 2,
     PlayersTurn = 3,
-    EnemiesTurn = 4
+    EnemiesTurn = 4,
+    Win = 5,
+    Lose = 6
 }

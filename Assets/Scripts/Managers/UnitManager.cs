@@ -35,31 +35,24 @@ public class UnitManager : MonoBehaviour
     // This method is used to spawn the player's character.
     public void SpawnCharacter()
     {
-        // Set the number of characters to spawn.
-        var characterCount = 1;
+        // Get a random character prefab.
+        var randomPrefab = GetRandomUnit<BaseCharacter>(Faction.Character);
 
-        // Spawn the characters.
-        for (int i = 0; i < characterCount; i++)
-        {
-            // Get a random character prefab.
-            var randomPrefab = GetRandomUnit<BaseCharacter>(Faction.Character);
+        // Instantiate the character prefab.
+        Character = Instantiate(randomPrefab);
 
-            // Instantiate the character prefab.
-            Character = Instantiate(randomPrefab);
-            Character.init();
+        RevealedInfoCondition cond = (RevealedInfoCondition)ScriptableObject.CreateInstance(typeof(RevealedInfoCondition));
+        cond.duration = ConditionDuration.Custom;
+        Character.AddCondition(cond);
 
-            RevealedInfoCondition cond = (RevealedInfoCondition)ScriptableObject.CreateInstance(typeof(RevealedInfoCondition));
-            cond.duration = ConditionDuration.Custom;
-            Character.AddCondition(cond);
-            // Get a random spawn tile.
-            var randomSpawnTile = GridManager.Instance.GetCharacterSpawnTile();
+        // Get a random spawn tile.
+        var randomSpawnTile = GridManager.Instance.GetCharacterSpawnTile();
 
-            // Set the character on the spawn tile.
-            randomSpawnTile.SetUnit(Character);
+        // Set the character on the spawn tile.
+        randomSpawnTile.SetUnit(Character);
 
-            // Set up the menu for the character.
-            MenuManager.Instance.setupMenu(Character);
-        }
+        // Set up the menu for the character.
+        MenuManager.Instance.setupMenu(Character);
 
        // _cam.transform.parent = Character.transform;
         // Change the game state to spawn enemies.
@@ -108,6 +101,11 @@ public class UnitManager : MonoBehaviour
     public IEnumerator EnemiesTurn()
     {
         yield return new WaitForSeconds(0.5f);
+        if(Enemies.Count == 0)
+        {
+            CombatManager.Instance.ChangeState(CombatState.Win);
+            yield return new WaitForSeconds(0.5f);
+        }
         foreach (BaseEnemy enemy in Enemies)
         {
             yield return enemy.EnemyTurn(); // Wait for the enemy to finish its turn.
@@ -120,5 +118,11 @@ public class UnitManager : MonoBehaviour
     private T GetRandomUnit<T>(Faction faction) where T : BaseUnit
     {
         return (T)_units.Where(u => u.Faction == faction).OrderBy(o => Random.value).First().UnitPrefab;
+    }
+
+    public void RemoveEnemy(BaseEnemy enemy)
+    {
+        Enemies.Remove(enemy);
+        CombatManager.Instance.ChangeState(CombatState.Win);
     }
 }

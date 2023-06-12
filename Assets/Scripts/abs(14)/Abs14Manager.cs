@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Abs14Manager : MonoBehaviour
 {
@@ -116,6 +118,9 @@ public class Abs14Manager : MonoBehaviour
     // Check for winnner and loser, hand is over
     void RoundOver()
     {
+        var _units = Resources.LoadAll<ScriptableUnit>("Units").ToList();
+        var character = _units.Where(u => u.Faction == Faction.Character).First();
+
         int playerValue = ClaculateResult(playerScript.handValue);
         int dealerValue = ClaculateResult(dealerScript.handValue);
         Debug.Log("player value: " + playerValue + " player hand: " + playerScript.handValue);
@@ -123,10 +128,13 @@ public class Abs14Manager : MonoBehaviour
         if (playerValue > dealerValue)
         {
             mainText.text = "You win!";
+            character.UpdateCoins(10);
+
         }
         else if(dealerValue > playerValue)
         {
             mainText.text = "Dealer win!";
+            character.UpdateCoins(-10);
         }
         else
         {
@@ -141,6 +149,7 @@ public class Abs14Manager : MonoBehaviour
         mainText.gameObject.SetActive(true);
         ScoreTextDealer.gameObject.SetActive(true);
         hideCards.SetActive(false);
+        SceneManager.LoadScene("MainMap");
     }
     public void SelectCard1()
     {

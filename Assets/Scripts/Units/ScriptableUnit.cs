@@ -21,6 +21,8 @@ public class ScriptableUnit : ScriptableObject
 
     [SerializeField] private int Speed;
 
+    [SerializeField] private int Coins;
+
     [SerializeField] private int Level;
 
     [SerializeField] private List<string> Languages;
@@ -110,6 +112,16 @@ public class ScriptableUnit : ScriptableObject
     public virtual int GetSpeed()
     {
         return Speed;
+    }
+
+    public virtual int GetCoins()
+    {
+        return Coins;
+    }
+
+    public virtual void UpdateCoins(int update)
+    {
+        Coins += update;
     }
 
     public virtual int GetWeaponProf()

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329ea7bfaefcef945892d0c0e3297919, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 5863637902436320265, guid: 21f49bfcd7701d94ba0b8a33b7538628, type: 3}
   ItemSprite: {fileID: 0}
   itemName: Shield
   layer: 0

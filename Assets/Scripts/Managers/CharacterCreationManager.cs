@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class CharacterCreationManager : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class CharacterCreationManager : MonoBehaviour
     private int total;
 
     private int Loadout;
+
+    [SerializeField]
+    private GameObject[] circles; 
     // Start is called before the first frame update
     void Start()
     {
@@ -113,28 +117,36 @@ public class CharacterCreationManager : MonoBehaviour
                 character.OffHand = _items.Where(i => i.GetItemName() == "Dagger").First();
                 break;
         }
-
+        character.SetCurrentHP(character.GetHP());
+        PlayerPrefs.DeleteKey("Map");
+        SceneManager.LoadScene("MainMap");
     }
 
     public void Defender()
     {
         Loadout = 0;
+        ActivateCircle(Loadout);
     }
     public void Champion()
     {
         Loadout = 1;
+        ActivateCircle(Loadout);
     }
     public void Flurry()
     {
         Loadout = 2;
+        ActivateCircle(Loadout);
     }
     public void Ranger()
     {
         Loadout = 3;
+        ActivateCircle(Loadout);
     }
 
     private void AddToStat(Abilities abilitiy)
     {
+        if (total == 0)
+            return;
         switch (abilitiy)
         {
             case (Abilities.Strength):
@@ -190,6 +202,8 @@ public class CharacterCreationManager : MonoBehaviour
 
     private void SubFromStat(Abilities abilitiy)
     {
+        if (total == 12)
+            return;
         switch (abilitiy)
         {
             case (Abilities.Strength):
@@ -246,5 +260,16 @@ public class CharacterCreationManager : MonoBehaviour
     {
         total += update;
         Total.text = "Total: " + total.ToString();
+    }
+
+    private void ActivateCircle(int index)
+    {
+        for(int i = 0; i< circles.Length; i++)
+        {
+            if (i == index)
+                circles[i].SetActive(true);
+            else
+                circles[i].SetActive(false);
+        }
     }
 }

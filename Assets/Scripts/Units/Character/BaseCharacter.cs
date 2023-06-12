@@ -9,6 +9,13 @@ It inherits from the BaseUnit class.
 public class BaseCharacter : BaseUnit
 {
     public Tile selectedTile => GridManager.Instance.selectedTile;
+
+    private void OnDestroy()
+    {
+        bool alive = unitData.GetCurrentHP() > 0;
+        if (!alive)
+            CombatManager.Instance.ChangeState(CombatState.Lose);
+    }
     //Override the TakeDamage function from BaseUnit to include updating the menu.
     public override void TakeDamage(int damage)
     {
