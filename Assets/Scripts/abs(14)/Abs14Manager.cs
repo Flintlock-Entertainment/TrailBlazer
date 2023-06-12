@@ -149,6 +149,12 @@ public class Abs14Manager : MonoBehaviour
         mainText.gameObject.SetActive(true);
         ScoreTextDealer.gameObject.SetActive(true);
         hideCards.SetActive(false);
+        Invoke("LoadMainMap", 1f);
+        
+    }
+
+    private void LoadMainMap()
+    {
         SceneManager.LoadScene("MainMap");
     }
     public void SelectCard1()

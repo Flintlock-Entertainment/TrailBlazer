@@ -119,6 +119,12 @@ public class CharacterCreationManager : MonoBehaviour
         }
         character.SetCurrentHP(character.GetHP());
         PlayerPrefs.DeleteKey("Map");
+
+        Invoke("LoadMainMap", 1f);
+    }
+
+    private void LoadMainMap()
+    {
         SceneManager.LoadScene("MainMap");
     }
 
