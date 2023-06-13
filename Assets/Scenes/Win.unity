@@ -345,8 +345,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeathScene, Assembly-CSharp
+      - m_Target: {fileID: 1348918525}
+        m_TargetAssemblyTypeName: WinScene, Assembly-CSharp
         m_MethodName: Reincarnate
         m_Mode: 1
         m_Arguments:

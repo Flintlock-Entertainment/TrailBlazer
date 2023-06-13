@@ -17,8 +17,8 @@ MonoBehaviour:
   actionsPerTurn: 3
   baseHP: 10
   classHP: 10
-  currentHP: 21
-  Stats: 02000000040000000300000000000000ffffffff01000000
+  currentHP: 0
+  Stats: 02000000020000000300000000000000ffffffff01000000
   Speed: 2
   Coins: 0
   Level: 1
