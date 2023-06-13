@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class CharacterCreationManager : MonoBehaviour
 {
@@ -136,16 +134,26 @@ public class CharacterCreationManager : MonoBehaviour
         }
         character.SetCurrentHP(character.GetHP());
         PlayerPrefs.DeleteKey("Map");
-        EditorSceneManager.SaveOpenScenes();
         GameManager.Instance.ActivateLoadingScreen();
         StartCoroutine(WaitForCharacterDataToUpdate(character));
     }
 
     private IEnumerator WaitForCharacterDataToUpdate(ScriptableUnit character)
     {
-        while (character.GetStat(Abilities.Constitution) != numCon && character.GetCurrentHP() != character.GetHP())
+        while (CheckUpdated(character))
             yield return null;
         GameManager.Instance.LoadScene("MainMap");
+    }
+
+    private bool CheckUpdated(ScriptableUnit character)
+    {
+        return character.GetStat(Abilities.Strength) != numStr &&
+            character.GetStat(Abilities.Dexterity) != numDex &&
+            character.GetStat(Abilities.Constitution) != numCon &&
+            character.GetStat(Abilities.Intelligence) != numInt &&
+            character.GetStat(Abilities.Wisdom) != numWis &&
+            character.GetStat(Abilities.Charisma) != numCha &&
+            character.GetCurrentHP() != character.GetHP();
     }
   
 

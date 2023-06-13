@@ -181,9 +181,9 @@ public class ScriptableUnit : ScriptableObject
                         "cha= " + GetStat(Abilities.Charisma) + "  "; // + "Will= " + GetWillSave() + "\n";
         else
             desc =
-            "str= " + "?" + "  " + "HP= " + "?" + "/" + "?" + "\n" +
-            "dex= " + "?" + "  " + "speed= " + "?" + "\n" +
-            "con= " + "?" + "  " + "AC= " + "?" + "\n" +
+            "str= " + "?" + "  " + "speed= " + "?" + "\n" + 
+            "dex= " + "?" + "  " + "AC= " + "?" + "\n" +
+            "con= " + "?" + "  " + "HP= " + "?" + "/" + "?" + "\n" + 
             "int= " + "?" + "  " + "\n"+// + "Reflex= " + "?" + "\n" +
             "wis= " + "?" + "  " + "\n"+ // + "Fortitude= " + "?" + "\n" +
             "cha= " + "?" + "  ";// + "Will= " + "?" + "\n";
