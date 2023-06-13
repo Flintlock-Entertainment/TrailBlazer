@@ -1347,7 +1347,8 @@ MonoBehaviour:
   - This is your stats, it shows your health (HP - affected by your Constitution),
     speed, armor (AC - affected by your Dexterity), and abilities. click for next
     tutorial
-  - This is your combat logger. Use it to follow what happened during combat.
+  - This is your combat logger. Left mouse click on it and scroll up and down to
+    follow what happened during combat.
   - Click Stride to move around the battlefield.
   - Click Main Hand or Off Hand to use the item held in said hand.
   - Try and trip an enemy. It will make him easer to hit and waste one of his actions.
