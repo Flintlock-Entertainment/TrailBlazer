@@ -17,7 +17,7 @@ public class Actions : MonoBehaviour
     public void StrideAction()
     {
         if (!IsPlayersTurn()) return;
-        Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= character.unitData.GetSpeed();
+        Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= character.unitData.GetSpeed() && t.Value > 0;
 
         ChoiceOnMap(discriminator, _StrideAction);
     }
@@ -45,7 +45,7 @@ public class Actions : MonoBehaviour
     public void Trip()
     {
        if (!IsPlayersTurn()) return;
-        Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= 1;
+        Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= 1 && t.Value > 0;
         ChoiceOnMap(discriminator, _TripAction);
 
     }
@@ -53,6 +53,8 @@ public class Actions : MonoBehaviour
     private void _TripAction(IEnumerable<KeyValuePair<Tile, int>> tiles, BaseCharacter user)
     {
         var target = selectedTile.OccupiedUnit;
+        if (target == null)
+            return;
         var outcome = Utils.CalculateOutCome(user.unitData.GetSkill(Skills.Athletics) + Utils.CheckRoll(), 10 + target.unitData.GetReflexSave());
         ProneCondition condition = (ProneCondition)ScriptableObject.CreateInstance(typeof(ProneCondition));
         condition.duration = ConditionDuration.StartOfTurn;
@@ -84,7 +86,7 @@ public class Actions : MonoBehaviour
     public void Demoralize()
     {
         if (!IsPlayersTurn()) return;
-        Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= character.unitData.GetStat(Abilities.Charisma);
+        Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= 1 + character.unitData.GetStat(Abilities.Charisma) && t.Value > 0;
         ChoiceOnMap(discriminator, _DemoralizeAction);
 
     }
@@ -92,6 +94,8 @@ public class Actions : MonoBehaviour
     private void _DemoralizeAction(IEnumerable<KeyValuePair<Tile, int>> tiles, BaseCharacter user)
     {
         var target = selectedTile.OccupiedUnit;
+        if (target == null)
+            return;
         var outcome = Utils.CalculateOutCome(user.unitData.GetSkill(Skills.Intimidation) + Utils.CheckRoll(), 10 + target.unitData.GetWillSave());
         FrightenedCondition condition = (FrightenedCondition)ScriptableObject.CreateInstance(typeof(FrightenedCondition));
         condition.duration = ConditionDuration.EndOfTurn;
@@ -116,7 +120,7 @@ public class Actions : MonoBehaviour
     public void RecallKnowledge()
     {
         if (!IsPlayersTurn()) return;
-        Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= 1+ character.unitData.GetStat(Abilities.Wisdom);
+        Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= 1 + character.unitData.GetStat(Abilities.Wisdom) && t.Value > 0;
 
         ChoiceOnMap(discriminator, _RecallKnowledge);
 
@@ -125,6 +129,8 @@ public class Actions : MonoBehaviour
     private void _RecallKnowledge(IEnumerable<KeyValuePair<Tile, int>> tiles, BaseCharacter user)
     {
         var target = selectedTile.OccupiedUnit;
+        if (target == null)
+            return;
         var outcome = Utils.CalculateOutCome(user.unitData.GetSkill(Skills.Arcana) + Utils.CheckRoll(), 10 + target.unitData.GetSkill(Skills.Deception));
         RevealedInfoCondition condition = (RevealedInfoCondition)ScriptableObject.CreateInstance(typeof(RevealedInfoCondition));
         condition.duration = ConditionDuration.Custom;

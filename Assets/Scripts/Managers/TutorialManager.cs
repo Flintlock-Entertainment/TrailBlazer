@@ -20,7 +20,9 @@ public class TutorialManager : MonoBehaviour
     private int popUpIndex;
 
     // input action for left mouse button click
-    [SerializeField] InputAction lmbClick; 
+    [SerializeField] InputAction lmbClick;
+
+    [SerializeField] GameObject TextSceen;
 
     // make sure the input action is properly initialized
     void OnValidate()
@@ -80,7 +82,8 @@ public class TutorialManager : MonoBehaviour
             {
                 Destroy(popUps[i]);
             }
-            Destroy(tutorialText);
+            Destroy(tutorialText.gameObject);
+            Destroy(TextSceen);
             Destroy(this.gameObject);
         }
     }

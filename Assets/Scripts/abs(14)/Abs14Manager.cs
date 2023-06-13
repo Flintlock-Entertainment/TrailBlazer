@@ -14,6 +14,7 @@ public class Abs14Manager : MonoBehaviour
     public Button dealBtn;
     public Button hitBtn;
     public Button standBtn;
+    public Button continueBtn;
 
     private int standClicks = 0;
 
@@ -31,7 +32,7 @@ public class Abs14Manager : MonoBehaviour
     public GameObject hideCards;
     
     public int numOfTurns = 1;
-
+    public bool swapingCards;
     private bool dealerFinished;
 
     private void Awake()
@@ -44,11 +45,13 @@ public class Abs14Manager : MonoBehaviour
         dealBtn.onClick.AddListener(() => DealClicked());
         hitBtn.onClick.AddListener(() => HitClicked());
         standBtn.onClick.AddListener(() => StandClicked());
+        continueBtn.onClick.AddListener(() => ContinueClicked());
         //betBtn.onClick.AddListener(() => BetClicked());
     }
 
     private void DealClicked()
     {
+        continueBtn.gameObject.SetActive(false);
         // Reset round, hide text, prep for new hand
         playerScript.ResetHand();
         dealerScript.ResetHand();
@@ -76,10 +79,13 @@ public class Abs14Manager : MonoBehaviour
 
     private void HitClicked()
     {
+        if (swapingCards)
+            return;
         Debug.Log("Hit");
         playerScript.cardSelected = -1;
         if (numOfTurns <= 3 && standClicks == 0)
         {
+            swapingCards = true;
             StartCoroutine(playerScript.DrawCard());
         }
     }
@@ -90,6 +96,8 @@ public class Abs14Manager : MonoBehaviour
     }
     private void StandClicked()
     {
+        if (swapingCards)
+            return;
         standClicks++;
         if (standClicks > 1 &&  dealerFinished) 
             RoundOver();
@@ -149,13 +157,12 @@ public class Abs14Manager : MonoBehaviour
         mainText.gameObject.SetActive(true);
         ScoreTextDealer.gameObject.SetActive(true);
         hideCards.SetActive(false);
-        Invoke("LoadMainMap", 1f);
-        
+        continueBtn.gameObject.SetActive(true);
     }
 
-    private void LoadMainMap()
+    private void ContinueClicked()
     {
-        SceneManager.LoadScene("MainMap");
+        GameManager.Instance.LoadScene("MainMap");
     }
     public void SelectCard1()
     {

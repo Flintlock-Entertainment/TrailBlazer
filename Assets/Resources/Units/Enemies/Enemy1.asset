@@ -15,9 +15,9 @@ MonoBehaviour:
   Faction: 1
   UnitPrefab: {fileID: -5723595769685195821, guid: a6a626e074df43a468b858d436c8020d, type: 3}
   actionsPerTurn: 3
-  baseHP: 10
+  baseHP: 70
   classHP: 10
-  currentHP: -2
+  currentHP: 83
   Stats: 02000000040000000300000000000000ffffffff01000000
   Speed: 2
   Coins: 0

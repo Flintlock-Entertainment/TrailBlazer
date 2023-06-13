@@ -67,6 +67,7 @@ public class PlayerScript : MonoBehaviour
         cardSelected = -1;
         UpdateText();
         Abs14Manager.instance.numOfTurns++;
+        Abs14Manager.instance.swapingCards = false;
         yield return new WaitForSeconds(0.5f);
     }
 

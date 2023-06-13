@@ -47,7 +47,7 @@ public class WeaponLogic : ItemLogic
         weaponData = (ScriptableWeapon)itemData;
         Debug.Log(weaponData.GetRange());
         // Get all the tiles within the weapon's range.
-        Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= weaponData.GetRange();
+        Func<KeyValuePair<Tile, int>, bool> discriminator = t => t.Value <= weaponData.GetRange() && t.Value > 0;
 
         // Highlight all the tiles within the weapon's range.
         var tiles = GridManager.Instance.ToggleDarkLightTiles(discriminator, user.OccupiedTile);

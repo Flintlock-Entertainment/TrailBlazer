@@ -7,10 +7,10 @@ public class PreAbs14Scene : MonoBehaviour
 {
     public void Agree()
     {
-        SceneManager.LoadScene("Abs(14)");
+        GameManager.Instance.LoadScene("Abs(14)");
     }
     public void Disagree()
     {
-        SceneManager.LoadScene("MainMap");
+        GameManager.Instance.LoadScene("MainMap");
     }
 }
