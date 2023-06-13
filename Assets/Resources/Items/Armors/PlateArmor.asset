@@ -24,8 +24,8 @@ MonoBehaviour:
   numOfActions: 0
   rarity: 0
   Description: 
-  ACBonus: 16
-  DexCap: 2
+  ACBonus: 15
+  DexCap: 3
   CheckPenalty: 10
   SpeedPenalty: 10
   StrengthThreshold: 2

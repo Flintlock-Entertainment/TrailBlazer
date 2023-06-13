@@ -173,20 +173,20 @@ public class ScriptableUnit : ScriptableObject
         string desc;
         if (revealInfo)
             desc =
-                        "str= " + GetStat(Abilities.Strength) + "  " + "HP= " + GetCurrentHP() + "/" + GetHP() + "\n" +
-                        "dex= " + GetStat(Abilities.Dexterity) + "  " + "speed= " + GetSpeed() + "\n" +
-                        "con= " + GetStat(Abilities.Constitution) + "  " + "AC= " + GetAC() + "\n" +
-                        "int= " + GetStat(Abilities.Intelligence) + "  " + "Reflex= " + GetReflexSave() + "\n" +
-                        "wis= " + GetStat(Abilities.Wisdom) + "  " + "Fortitude= " + GetFortitueSave() + "\n" +
-                        "cha= " + GetStat(Abilities.Charisma) + "  " + "Will= " + GetWillSave() + "\n";
+                        "str= " + GetStat(Abilities.Strength) + "  " + "speed= " + GetSpeed() + "\n" +
+                        "dex= " + GetStat(Abilities.Dexterity) + "  " + "AC= " + GetAC() + "\n" +
+                        "con= " + GetStat(Abilities.Constitution) + "  " + "HP= " + GetCurrentHP() + "/" + GetHP() + "\n" +
+                        "int= " + GetStat(Abilities.Intelligence) + "  " + "\n" + //"Reflex= " + GetReflexSave() + "\n" +
+                        "wis= " + GetStat(Abilities.Wisdom) + "  " + "\n" +//"Fortitude= " + GetFortitueSave() + "\n" +
+                        "cha= " + GetStat(Abilities.Charisma) + "  "; // + "Will= " + GetWillSave() + "\n";
         else
             desc =
             "str= " + "?" + "  " + "HP= " + "?" + "/" + "?" + "\n" +
             "dex= " + "?" + "  " + "speed= " + "?" + "\n" +
             "con= " + "?" + "  " + "AC= " + "?" + "\n" +
-            "int= " + "?" + "  " + "Reflex= " + "?" + "\n" +
-            "wis= " + "?" + "  " + "Fortitude= " + "?" + "\n" +
-            "cha= " + "?" + "  " + "Will= " + "?" + "\n";
+            "int= " + "?" + "  " +// + "Reflex= " + "?" + "\n" +
+            "wis= " + "?" + "  " +// + "Fortitude= " + "?" + "\n" +
+            "cha= " + "?" + "  ";// + "Will= " + "?" + "\n";
         return desc;
     }
     protected class SkillManager

@@ -25,6 +25,7 @@ public class BruteStartegy : IBaseStrategy
             // If the player character is within moving range, move towards them
             if (path.Count <= user.unitData.GetSpeed() + 1)
             {
+                MenuManager.Instance.AddLog($"{user.UnitName} stride\n");
                 path.Last.Value.SetUnit(user); // Set the enemy's position to the last tile in the path
             }
             //if(path.Count == 0)
@@ -53,7 +54,7 @@ public class BruteStartegy : IBaseStrategy
             // If the player character is out of range, move as far as possible towards them
             else
             {
-                Debug.Log("out of range");
+                MenuManager.Instance.AddLog($"{user.UnitName} stride\n");
                 Tile[] _path = new Tile[path.Count];
                 path.CopyTo(_path, 0);
                 _path[user.unitData.GetSpeed()].SetUnit(user); // Set the enemy's position to the tile `speed` spaces away from their current position

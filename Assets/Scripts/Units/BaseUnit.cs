@@ -23,6 +23,7 @@ public class BaseUnit : MonoBehaviour
 
     public virtual void ResetTurn()
     {
+        MenuManager.Instance.AddLog($"\n\t{UnitName}'s Turn\n\n");
         Turns = unitData.GetActionsPerTurn();
         numOfAttacks = 0;
         RemoveConditions(ConditionDuration.StartOfTurn, typeof(ScriptableCondition));

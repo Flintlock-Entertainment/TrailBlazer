@@ -68,7 +68,7 @@ public abstract class Tile : MonoBehaviour
     // Sets the tile's OccupiedUnit property and updates the unit's position.
     public void SetUnit(BaseUnit unit)
     {
-        if (!this._isWalkable) return;
+        if (!Walkable) return;
         if (unit.OccupiedTile != null) unit.OccupiedTile.OccupiedUnit = null;
         unit.transform.position = transform.position;
         OccupiedUnit = unit;

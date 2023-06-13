@@ -24,6 +24,8 @@ public class Actions : MonoBehaviour
     private void _StrideAction(IEnumerable<KeyValuePair<Tile, int>> tiles, BaseCharacter user)
     {
         selectedTile.SetUnit(character);
+        if (character.OccupiedTile != selectedTile)
+            return;
         AddLog($"{character.UnitName} stride\n");
         user.UpdateTurns(1);
     }

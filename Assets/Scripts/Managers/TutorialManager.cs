@@ -79,8 +79,10 @@ public class TutorialManager : MonoBehaviour
             {
                 Destroy(popUps[i]);
             }
-            Destroy(tutorialText.gameObject);
-            Destroy(TextSceen);
+            tutorialText.gameObject.SetActive(false);
+            TextSceen.SetActive(false);
+            //Destroy(tutorialText.gameObject);
+            //Destroy(TextSceen);
             Destroy(this.gameObject);
         }
     }
