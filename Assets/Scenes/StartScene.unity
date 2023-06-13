@@ -834,10 +834,10 @@ RectTransform:
   m_Father: {fileID: 859311993}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.35, y: 78.34}
-  m_SizeDelta: {x: 1076.51, y: 304.63}
+  m_AnchorMin: {x: 0.0037073845, y: 0.39200002}
+  m_AnchorMax: {x: 0.98600006, y: 0.8328819}
+  m_AnchoredPosition: {x: 2, y: 0.33999634}
+  m_SizeDelta: {x: -1.4899902, y: -1.3699951}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1949612174
 MonoBehaviour:
@@ -859,13 +859,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The heroes who pushed the evil forces back and have gone into the Otherplane
-    to beat them once and for all have fallen and their souls were captured!!
+  m_text: 'The heroes who pushed the evil forces back beyond the portal and have
+    gone into the Otherplane to beat them once and for all have fallen and their
+    souls were captured!!
 
 
-    It''s
-    up to you, to brave through the Otherplane and try and free their souls, empowering
-    yourself with their souls if you can...'
+    It''s up to you, to brave through the Otherplane
+    and try and free their souls, empowering yourself with their souls if you can...'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -892,8 +892,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

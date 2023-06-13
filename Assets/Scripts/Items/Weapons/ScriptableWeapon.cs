@@ -17,7 +17,7 @@ public abstract class ScriptableWeapon : ScriptableItem
 
     public virtual int GetAttackRoll(BaseUnit user)
     {
-        MenuManager.Instance.AddLog($"{user.unitData.GetStat(Abilities.Strength)}(str) + {user.unitData.GetWeaponProf()}(prof) + {GetMultipleAttackPenalty(user.numOfAttacks)} +");
+        MenuManager.Instance.AddLog($"{user.unitData.GetStat(Abilities.Strength)}(str) + {user.unitData.GetWeaponProf()}(prof) + {GetMultipleAttackPenalty(user.numOfAttacks)}(current penalty) +");
         int roll = Utils.CheckRoll();
         MenuManager.Instance.AddLog($" = {roll + user.unitData.GetStat(Abilities.Strength) + user.unitData.GetWeaponProf() + GetMultipleAttackPenalty(user.numOfAttacks) }\n");
 
