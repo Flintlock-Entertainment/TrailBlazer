@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 0}
   ItemSprite: {fileID: 0}
-  itamName: 
+  itemName: 
+  layer: 0
   Bulk: 1
   Price: 1
   Hands: 1

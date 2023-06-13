@@ -16,9 +16,13 @@ public class CharacterCreationManager : MonoBehaviour
     private int total;
 
     private int Loadout;
+    private int heroesSaved;
 
     [SerializeField]
-    private GameObject[] circles; 
+    private GameObject[] circles;
+
+    [SerializeField]
+    private Button[] heroesButtons;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +33,18 @@ public class CharacterCreationManager : MonoBehaviour
         numInt = 0;
         numWis = 0;
         numCha = 0;
-        Loadout = 4;
+        if (!PlayerPrefs.HasKey("Heroes_Saved"))
+            PlayerPrefs.SetInt("Heroes_Saved", 1);
+        heroesSaved = PlayerPrefs.GetInt("Heroes_Saved");
+        Debug.Log("num of heroes saved: " + heroesSaved);
+        Loadout = heroesSaved;
+        for(int i = 0; i< heroesButtons.Length; i++)
+        {
+            if(i < heroesSaved)
+                heroesButtons[i].interactable = true;
+            else
+                heroesButtons[i].interactable = false;
+        }
     }
 
     public void AddStr()
@@ -84,7 +99,7 @@ public class CharacterCreationManager : MonoBehaviour
 
     public void Continue()
     {
-        if (total != 0 || Loadout == 4)
+        if (total != 0 || Loadout == heroesSaved)
             return;
         Debug.Log("Continue");
         var _units = Resources.LoadAll<ScriptableUnit>("Units").ToList();

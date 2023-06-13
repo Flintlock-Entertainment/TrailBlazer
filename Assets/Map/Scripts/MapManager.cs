@@ -21,7 +21,9 @@ namespace Map
                 if (map.path.Any(p => p.Equals(map.GetBossNode().point)))
                 {
                     // payer has already reached the boss, generate a new map
-                    GenerateNewMap();
+                    //GenerateNewMap();
+                    PlayerPrefs.SetInt("Heroes_Saved", PlayerPrefs.GetInt("Heroes_Saved") + 1);
+                    GameManager.Instance.LoadScene("Win");
                 }
                 else
                 {

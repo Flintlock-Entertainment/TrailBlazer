@@ -1251,6 +1251,11 @@ MonoBehaviour:
   - {fileID: 1079246127}
   - {fileID: 1760985922}
   - {fileID: 1256361154}
+  heroesButtons:
+  - {fileID: 1088802623}
+  - {fileID: 1786143790}
+  - {fileID: 1978132296}
+  - {fileID: 738490611}
 --- !u!4 &415245397
 Transform:
   m_ObjectHideFlags: 0
