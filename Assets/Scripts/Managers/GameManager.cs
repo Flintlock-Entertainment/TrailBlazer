@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     {
         this.sceneName = sceneName;
         loadingScreen.SetActive(true);
-        Invoke("loadScene", 5f);
+        Invoke("loadScene", 2f);
 
     }
 

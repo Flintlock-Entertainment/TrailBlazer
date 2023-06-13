@@ -14,6 +14,9 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] private CombatLogger _logger;
 
+    [SerializeField]
+    private Button MainHand, OffHand;
+
     // This method is called when the script instance is being loaded.
     void Awake()
     {
@@ -23,6 +26,8 @@ public class MenuManager : MonoBehaviour
 
     public void setupMenu(BaseCharacter character)
     {
+        MainHand.gameObject.GetComponent<Image>().sprite = character.unitData.GetMainHand().ItemSprite;
+        OffHand.gameObject.GetComponent<Image>().sprite = character.unitData.GetOffHand().ItemSprite;
         _menu.init(character.unitData.GetDescription(), character.Turns);
     }
 

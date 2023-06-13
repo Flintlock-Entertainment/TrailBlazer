@@ -1478,6 +1478,7 @@ MonoBehaviour:
   standBtnText: {fileID: 584610447}
   hideCards: {fileID: 865811117}
   numOfTurns: 1
+  dealClicked: 0
   swapingCards: 0
 --- !u!1 &424150636
 GameObject:
@@ -4021,9 +4022,9 @@ MonoBehaviour:
   popUpText:
   - The rules are simple. to win all you need to do is have your score be greater
     than the dealer.
-  - 'To calculate your score: claculate the distance between the sum of your two
+  - 'To calculate your score: calculate the distance between the sum of your two
     cards and 14. '
-  - Each palyer have three rounds. Each round a player can choose to Hit or Stand.
+  - Each player have three rounds. Each round a player can choose to Hit or Stand.
   - Hit - you draw a card, you must then swap the card with one of your cards.
   - 'Stand - you end your turn. '
   - This is your hand, when you start the game the two cards will flip and you will

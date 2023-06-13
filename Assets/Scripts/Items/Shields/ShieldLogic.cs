@@ -21,8 +21,8 @@ public class ShieldLogic : ItemLogic
     {
         if (user.unitData is ShieldRaisedCondition)
             return;
-        MenuManager.Instance.AddLog($"{user.UnitName} raised his shield\n");
         shieldData = (ScriptableWearableItem)itemData;
+        MenuManager.Instance.AddLog($"{user.UnitName} raised his shield (+ {shieldData.GetAC(user.unitData.GetStat(Abilities.Dexterity))} AC)\n");
         ShieldRaisedCondition condition = (ShieldRaisedCondition)ScriptableObject.CreateInstance(typeof(ShieldRaisedCondition));
         condition.shield = shieldData;
         condition.duration = ConditionDuration.StartOfTurn;

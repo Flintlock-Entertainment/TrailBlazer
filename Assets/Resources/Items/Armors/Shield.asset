@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shield
   m_EditorClassIdentifier: 
   Prefab: {fileID: 5863637902436320265, guid: 21f49bfcd7701d94ba0b8a33b7538628, type: 3}
-  ItemSprite: {fileID: 0}
+  ItemSprite: {fileID: 21300000, guid: 0d594c283d1a6114bb3972895365c165, type: 3}
   itemName: Shield
   layer: 0
   Bulk: 1
@@ -25,7 +25,7 @@ MonoBehaviour:
   rarity: 0
   Description: 
   ACBonus: 2
-  DexCap: 999
+  DexCap: 0
   CheckPenalty: 0
   SpeedPenalty: 0
   StrengthThreshold: 0
