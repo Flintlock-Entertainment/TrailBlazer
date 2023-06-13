@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -95,4 +96,9 @@ public class BaseUnit : MonoBehaviour
         }
     }
     protected virtual void ChangeTurn() { }
+
+    public void RevealInfo()
+    {
+        unitData.RevealInfo();
+    }
 }

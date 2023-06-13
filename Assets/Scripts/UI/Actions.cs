@@ -87,11 +87,12 @@ public class Actions : MonoBehaviour
                 MenuManager.Instance.AddLog("You have fallen");
                 if(user.Turns >= 1)
                 {
-                    MenuManager.Instance.AddLog("and got up\n");
+                    MenuManager.Instance.AddLog(" and got up\n");
                     user.UpdateTurns(1);
                 }
                 else
                 {
+                    MenuManager.Instance.AddLog(" and now prone\n");
                     user.AddCondition(condition);
                 }
                 break;
@@ -169,14 +170,13 @@ public class Actions : MonoBehaviour
         var outcome = Utils.CalculateOutCome(user.unitData.GetSkill(Skills.Arcana) + roll, 10 + target.unitData.GetSkill(Skills.Deception));
         AddLog("\n");
 
-        RevealedInfoCondition condition = (RevealedInfoCondition)ScriptableObject.CreateInstance(typeof(RevealedInfoCondition));
-        condition.duration = ConditionDuration.Custom;
+        
         switch (outcome)
         {
             case (OutCome.CritSuccess):
             case (OutCome.Success):
                 AddLog($"{user.UnitName} remember some information about {target.UnitName}\n");
-                target.AddCondition(condition);
+                target.RevealInfo();
                 break;
             case (OutCome.Fail):
             case (OutCome.CritFail):

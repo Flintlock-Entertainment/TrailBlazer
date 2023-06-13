@@ -9,7 +9,6 @@ public class ScriptableItem : ScriptableObject
     [SerializeField] public Sprite ItemSprite;
     [SerializeField] private string itemName;
     [SerializeField] public Layer layer;
-
     [SerializeField] private int Bulk;
     [SerializeField] private int Price;
     [SerializeField] private int Hands;

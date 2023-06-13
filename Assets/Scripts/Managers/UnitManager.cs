@@ -47,9 +47,7 @@ public class UnitManager : MonoBehaviour
         // Instantiate the character prefab.
         Character = Instantiate(randomPrefab);
 
-        RevealedInfoCondition cond = (RevealedInfoCondition)ScriptableObject.CreateInstance(typeof(RevealedInfoCondition));
-        cond.duration = ConditionDuration.Custom;
-        Character.AddCondition(cond);
+        Character.RevealInfo();
 
         // Get a random spawn tile.
         var randomSpawnTile = GridManager.Instance.GetCharacterSpawnTile();

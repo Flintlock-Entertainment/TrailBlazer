@@ -43,6 +43,8 @@ public class ScriptableUnit : ScriptableObject
 
     [SerializeField] private ScriptableWearableItem Legs;
 
+    protected bool revealInfo;
+
     public ScriptableUnit()
     {
         Languages = new List<string>();
@@ -156,16 +158,35 @@ public class ScriptableUnit : ScriptableObject
         return OffHand;
     }
 
+    public virtual void RevealInfo()
+    {
+        revealInfo = true;
+    }
+
+    public virtual bool GetRevealInfo()
+    {
+        return revealInfo;
+    }
+
     public virtual string GetDescription()
     {
-        string desc =
+        string desc;
+        if (revealInfo)
+            desc =
+                        "str= " + GetStat(Abilities.Strength) + "  " + "HP= " + GetCurrentHP() + "/" + GetHP() + "\n" +
+                        "dex= " + GetStat(Abilities.Dexterity) + "  " + "speed= " + GetSpeed() + "\n" +
+                        "con= " + GetStat(Abilities.Constitution) + "  " + "AC= " + GetAC() + "\n" +
+                        "int= " + GetStat(Abilities.Intelligence) + "  " + "Reflex= " + GetReflexSave() + "\n" +
+                        "wis= " + GetStat(Abilities.Wisdom) + "  " + "Fortitude= " + GetFortitueSave() + "\n" +
+                        "cha= " + GetStat(Abilities.Charisma) + "  " + "Will= " + GetWillSave() + "\n";
+        else
+            desc =
             "str= " + "?" + "  " + "HP= " + "?" + "/" + "?" + "\n" +
             "dex= " + "?" + "  " + "speed= " + "?" + "\n" +
             "con= " + "?" + "  " + "AC= " + "?" + "\n" +
             "int= " + "?" + "  " + "Reflex= " + "?" + "\n" +
             "wis= " + "?" + "  " + "Fortitude= " + "?" + "\n" +
             "cha= " + "?" + "  " + "Will= " + "?" + "\n";
-
         return desc;
     }
     protected class SkillManager
