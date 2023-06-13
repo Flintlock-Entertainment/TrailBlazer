@@ -91,9 +91,19 @@ public abstract class ScriptableCondition : ScriptableUnit
         return baseUnit.GetOffHand();
     }
 
+    public override void RevealInfo()
+    {
+        baseUnit.RevealInfo();
+    }
+    public override bool GetRevealInfo()
+    {
+        return baseUnit.GetRevealInfo();
+    }
+
     public override string GetDescription()
     {
-        return baseUnit.GetDescription();
+        revealInfo = GetRevealInfo();
+        return  base.GetDescription();
     }
 
     public ConditionDuration GetConditionDuration()

@@ -6,13 +6,14 @@ public class ProneCondition : ScriptableCondition
 {
     public override int GetActionsPerTurn()
     {
-        return base.GetActionsPerTurn() - 1;
+        return baseUnit.GetActionsPerTurn() - 1;
     }
 
     public override int GetAC()
     {
-        return base.GetAC() - 2;
+        return baseUnit.GetAC() - 2;
     }
+    
 
     public override int GetSpeed()
     {
