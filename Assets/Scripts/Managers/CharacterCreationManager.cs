@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
-using UnityEngine.SceneManagement;
 
 public class CharacterCreationManager : MonoBehaviour
 {
@@ -134,6 +136,7 @@ public class CharacterCreationManager : MonoBehaviour
         }
         character.SetCurrentHP(character.GetHP());
         PlayerPrefs.DeleteKey("Map");
+        EditorSceneManager.SaveOpenScenes();
         GameManager.Instance.ActivateLoadingScreen();
         StartCoroutine(WaitForCharacterDataToUpdate(character));
     }

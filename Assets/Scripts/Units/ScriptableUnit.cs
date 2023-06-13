@@ -184,8 +184,8 @@ public class ScriptableUnit : ScriptableObject
             "str= " + "?" + "  " + "HP= " + "?" + "/" + "?" + "\n" +
             "dex= " + "?" + "  " + "speed= " + "?" + "\n" +
             "con= " + "?" + "  " + "AC= " + "?" + "\n" +
-            "int= " + "?" + "  " +// + "Reflex= " + "?" + "\n" +
-            "wis= " + "?" + "  " +// + "Fortitude= " + "?" + "\n" +
+            "int= " + "?" + "  " + "\n"+// + "Reflex= " + "?" + "\n" +
+            "wis= " + "?" + "  " + "\n"+ // + "Fortitude= " + "?" + "\n" +
             "cha= " + "?" + "  ";// + "Will= " + "?" + "\n";
         return desc;
     }

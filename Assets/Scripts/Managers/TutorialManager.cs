@@ -10,6 +10,7 @@ public class TutorialManager : MonoBehaviour
     // an array of game objects to show different pop-ups
     [SerializeField] public GameObject[] popUps;
 
+    [TextArea(2, 10)]
     // an array of strings to store the text for each pop-up
     [SerializeField] public string[] popUpText;
 

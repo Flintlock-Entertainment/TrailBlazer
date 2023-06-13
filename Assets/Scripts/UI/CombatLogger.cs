@@ -16,7 +16,7 @@ public class CombatLogger : MonoBehaviour
     void Awake()
     {
         messageQueue = new Queue<string>();
-        logText.text = "Combat has started!\n";
+        logText.text = "\tCombat has started!\n";
     }
 
     // Add a message to the combat log
