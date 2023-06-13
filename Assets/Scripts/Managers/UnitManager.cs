@@ -107,11 +107,11 @@ public class UnitManager : MonoBehaviour
     // This coroutine executes the turn of each enemy in the Enemies list.
     public IEnumerator EnemiesTurn()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         if(Enemies.Count == 0)
         {
             CombatManager.Instance.ChangeState(CombatState.Win);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.5f);
         }
         foreach (BaseEnemy enemy in Enemies)
         {

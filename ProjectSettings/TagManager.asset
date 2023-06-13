@@ -44,3 +44,6 @@ TagManager:
   - name: HUD
     uniqueID: 3200496769
     locked: 0
+  - name: LoadingScreen
+    uniqueID: 2165056583
+    locked: 0

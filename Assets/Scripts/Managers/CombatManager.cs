@@ -54,10 +54,10 @@ public class CombatManager : MonoBehaviour
                 StartCoroutine(UnitManager.Instance.EnemiesTurn());
                 break;
             case CombatState.Win:
-                SceneManager.LoadScene("MainMap");
+                GameManager.Instance.LoadScene("MainMap");
                 break;
             case CombatState.Lose:
-                SceneManager.LoadScene("Death");
+                GameManager.Instance.LoadScene("Death");
                 break;
             default:
                 // If the GameState is not recognized, throw an exception

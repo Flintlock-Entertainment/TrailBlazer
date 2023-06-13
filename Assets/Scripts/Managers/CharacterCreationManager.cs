@@ -119,15 +119,17 @@ public class CharacterCreationManager : MonoBehaviour
         }
         character.SetCurrentHP(character.GetHP());
         PlayerPrefs.DeleteKey("Map");
-
-        Invoke("LoadMainMap", 1f);
+        GameManager.Instance.ActivateLoadingScreen();
+        StartCoroutine(WaitForCharacterDataToUpdate(character));
     }
 
-    private void LoadMainMap()
+    private IEnumerator WaitForCharacterDataToUpdate(ScriptableUnit character)
     {
-        SceneManager.LoadSceneAsync("MainMap", LoadSceneMode.Additive);
-        
+        while (character.GetCurrentHP() != character.GetHP())
+            yield return null;
+        GameManager.Instance.LoadScene("MainMap");
     }
+  
 
     public void Defender()
     {

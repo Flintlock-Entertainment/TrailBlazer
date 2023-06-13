@@ -7,6 +7,6 @@ public class DeathScene : MonoBehaviour
 {
     public void Reincarnate()
     {
-        SceneManager.LoadScene("CharacterCreation");
+        GameManager.Instance.LoadScene("CharacterCreation");
     }
 }

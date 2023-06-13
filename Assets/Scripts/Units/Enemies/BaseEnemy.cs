@@ -18,7 +18,7 @@ public class BaseEnemy : BaseUnit
         Debug.Log("Start enemy turn");
         ResetTurn();
         yield return Strategy.RunStrategy(this); // Call the Move() method
-        yield return new WaitForSeconds(0.5f); // Pause for half a second
+        yield return new WaitForSeconds(1f); // Pause for half a second
     }
 
     // Override the base method for changing turns

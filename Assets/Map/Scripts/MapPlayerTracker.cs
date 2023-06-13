@@ -71,12 +71,12 @@ namespace Map
             {
                 case NodeType.MinorEnemy:
                     PlayerPrefs.SetInt("Level", 1);
-                    SceneManager.LoadScene("CombatTutorScene");
+                    GameManager.Instance.LoadScene("CombatTutorScene");
                     break;
                 case NodeType.EliteEnemy:
                     break;
                 case NodeType.RestSite:
-                    SceneManager.LoadScene("LongRest");
+                    GameManager.Instance.LoadScene("LongRest");
                     break;
                 case NodeType.Treasure:
                     break;
@@ -84,10 +84,10 @@ namespace Map
                     break;
                 case NodeType.Boss:
                     PlayerPrefs.SetInt("Level", 3);
-                    SceneManager.LoadScene("CombatScene");
+                    GameManager.Instance.LoadScene("CombatScene");
                     break;
                 case NodeType.Mystery:
-                    SceneManager.LoadScene("PreAbs(14)");
+                    GameManager.Instance.LoadScene("PreAbs(14)");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
