@@ -83,6 +83,8 @@ public class BaseUnit : MonoBehaviour
                     next.baseUnit = prev;
                 else
                     unitData = prev;
+                
+                    
                 Destroy(curr);
             }
             else

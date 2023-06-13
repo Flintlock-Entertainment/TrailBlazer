@@ -8,7 +8,7 @@ public class BruteStartegy : IBaseStrategy
     {
         while (user.Turns > 0)
         {
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(1f);
             var target = UnitManager.Instance.Character.OccupiedTile;
             // Get the shortest path to the player character
             var path = BFS.GetShortestPath(user.OccupiedTile, target);

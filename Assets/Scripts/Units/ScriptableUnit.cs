@@ -56,6 +56,8 @@ public class ScriptableUnit : ScriptableObject
     {
         currentHP = 0;
     }
+
+    
     public virtual int GetReflexSave()
     {
         return GetSave(Saves.Reflex) + GetStat(Abilities.Dexterity);

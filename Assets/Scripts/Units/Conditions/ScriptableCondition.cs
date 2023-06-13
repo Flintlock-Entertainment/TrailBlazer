@@ -8,6 +8,7 @@ public abstract class ScriptableCondition : ScriptableUnit
 
     [SerializeField] public int conditionLevel;
     [SerializeField] public ConditionDuration duration;
+
     public override int GetReflexSave()
     {
         return baseUnit.GetReflexSave();

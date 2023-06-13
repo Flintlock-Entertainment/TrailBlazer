@@ -111,7 +111,7 @@ public class UnitManager : MonoBehaviour
         if(Enemies.Count == 0)
         {
             CombatManager.Instance.ChangeState(CombatState.Win);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1f);
         }
         foreach (BaseEnemy enemy in Enemies)
         {

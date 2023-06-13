@@ -29,6 +29,7 @@ public class Abs14Manager : MonoBehaviour
     public GameObject hideCards;
     
     public int numOfTurns = 1;
+    public bool dealClicked;
     public bool swapingCards;
     private bool dealerFinished;
 
@@ -43,6 +44,7 @@ public class Abs14Manager : MonoBehaviour
         hitBtn.onClick.AddListener(() => HitClicked());
         standBtn.onClick.AddListener(() => StandClicked());
         continueBtn.onClick.AddListener(() => ContinueClicked());
+        dealClicked = false;
         //betBtn.onClick.AddListener(() => BetClicked());
     }
 
@@ -72,11 +74,12 @@ public class Abs14Manager : MonoBehaviour
         standClicks = 0;
         numOfTurns = 1;
         dealerFinished = false;
+        dealClicked = true;
     }
 
     private void HitClicked()
     {
-        if (swapingCards)
+        if (swapingCards || !dealClicked)
             return;
         Debug.Log("Hit");
         playerScript.cardSelected = -1;
@@ -93,7 +96,7 @@ public class Abs14Manager : MonoBehaviour
     }
     private void StandClicked()
     {
-        if (swapingCards)
+        if (swapingCards || !dealClicked)
             return;
         standClicks++;
         if (standClicks > 1 &&  dealerFinished) 
@@ -155,6 +158,7 @@ public class Abs14Manager : MonoBehaviour
         ScoreTextDealer.gameObject.SetActive(true);
         hideCards.SetActive(false);
         continueBtn.gameObject.SetActive(true);
+        dealClicked = false;
     }
 
     private void ContinueClicked()
