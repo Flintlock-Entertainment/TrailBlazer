@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e8625ebe28f144885fb0a46fbb6bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLogLines: 10
+  maxLogLines: 50
   logText: {fileID: 252017116}
 --- !u!114 &237101263
 MonoBehaviour:
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 252017115}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -1198,15 +1198,19 @@ MonoBehaviour:
   - {fileID: 1096152819}
   - {fileID: 926166807}
   popUpText:
-  - This is your stats, it shows your health (HP), speed, armor (AC), and abilities.
-    click for next tutorial
+  - This is your stats, it shows your health (HP - affected by your Constitution),
+    speed, armor (AC - affected by your Dexterity), and abilities. click for next
+    tutorial
   - This is your combat logger. Use it to follow what happened during combat.
   - Click Stride to move around the battlefield.
   - Click Main Hand or Off Hand to use the item held in said hand.
   - Try and trip an enemy. It will make him easer to hit and waste one of his actions.
-    Beware if you fail you might fall yourself.
+    Beware if you fail you might fall yourself. Chance of success is affected by
+    your Strength.
   - Demoralize an enemy to lower his moral which effects his fighting efficiancy.
+    Its distance is affected by your Charisma.
   - Recall knowledge about an enemy to discover his stats. Might help you fight cleverly.
+    Distance is affected by your Wisdom but success is affected by your Intelligence.
   - 'It tracks your actions every turn: (number of actions left)/(max number of actions)'
   - Remember it is not wise to attack multiple times. Each time you attack within
     the same turn you receive a penalty on the attack. The more you attack the greater
