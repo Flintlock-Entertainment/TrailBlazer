@@ -15,25 +15,25 @@ public class CombatLogger : MonoBehaviour
 
     void Awake()
     {
-        maxLogLines = 10;
         messageQueue = new Queue<string>();
-        logText.text = "Combat has started!";
+        logText.text = "Combat has started!\n";
     }
 
     // Add a message to the combat log
     public void AddLog(string message)
     {
+        logText.text += message;
         // Enqueue the message
-        messageQueue.Enqueue(message);
+       // messageQueue.Enqueue(message);
 
         // If the queue is too long, remove the oldest message
-        while (messageQueue.Count > maxLogLines)
-        {
-            messageQueue.Dequeue();
-        }
+       // while (messageQueue.Count > maxLogLines)
+       // {
+       //     messageQueue.Dequeue();
+       // }
 
         // Update the log text
-        UpdateLogText();
+       // UpdateLogText();
     }
 
     // Update the combat log text

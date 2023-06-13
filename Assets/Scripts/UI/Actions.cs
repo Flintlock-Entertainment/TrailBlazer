@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using System;
 
@@ -25,6 +24,7 @@ public class Actions : MonoBehaviour
     private void _StrideAction(IEnumerable<KeyValuePair<Tile, int>> tiles, BaseCharacter user)
     {
         selectedTile.SetUnit(character);
+        AddLog($"{character.UnitName} stride\n");
         user.UpdateTurns(1);
     }
 
@@ -55,24 +55,45 @@ public class Actions : MonoBehaviour
         var target = selectedTile.OccupiedUnit;
         if (target == null)
             return;
-        var outcome = Utils.CalculateOutCome(user.unitData.GetSkill(Skills.Athletics) + Utils.CheckRoll(), 10 + target.unitData.GetReflexSave());
+        AddLog($"{user.UnitName} trip {target.UnitName}\n");
+
+        AddLog($"{user.unitData.GetSkill(Skills.Athletics)}(Athletics) +");
+        int roll = Utils.CheckRoll();
+        AddLog($" = {user.unitData.GetSkill(Skills.Athletics) + roll}\n");
+        var outcome = Utils.CalculateOutCome(user.unitData.GetSkill(Skills.Athletics) + roll, 10 + target.unitData.GetReflexSave());
+        AddLog("\n");
+
+
         ProneCondition condition = (ProneCondition)ScriptableObject.CreateInstance(typeof(ProneCondition));
         condition.duration = ConditionDuration.StartOfTurn;
         switch (outcome)
         {
             case (OutCome.CritSuccess):
-                target.TakeDamage(Utils.d6());
+                AddLog($"{target.UnitName} crashed to the groud\n");
+                roll = Utils.d6();
+                AddLog("\n");
+                target.TakeDamage(roll);
+                AddLog($"{target.UnitName} in now prone\n");
                 target.AddCondition(condition);
                 break;
             case (OutCome.Success):
+                AddLog($"{target.UnitName} fell and is now prone\n");
                 target.AddCondition(condition);
                 break;
             case (OutCome.Fail):
                 MenuManager.Instance.AddLog("You failed to trip the enemy, try again.\n");
                 break;
             case (OutCome.CritFail):
-                MenuManager.Instance.AddLog("You have fallen and got up\n");
-                user.UpdateTurns(1);
+                MenuManager.Instance.AddLog("You have fallen");
+                if(user.Turns >= 1)
+                {
+                    MenuManager.Instance.AddLog("and got up\n");
+                    user.UpdateTurns(1);
+                }
+                else
+                {
+                    user.AddCondition(condition);
+                }
                 break;
         }
         user.UpdateTurns(1);
@@ -96,22 +117,31 @@ public class Actions : MonoBehaviour
         var target = selectedTile.OccupiedUnit;
         if (target == null)
             return;
-        var outcome = Utils.CalculateOutCome(user.unitData.GetSkill(Skills.Intimidation) + Utils.CheckRoll(), 10 + target.unitData.GetWillSave());
+        AddLog($"{user.UnitName} demoralize {target.UnitName}\n");
+
+        AddLog($"{user.unitData.GetSkill(Skills.Intimidation)}(Intimidation) +");
+        int roll = Utils.CheckRoll();
+        AddLog($" = {user.unitData.GetSkill(Skills.Intimidation) + roll}\n");
+        var outcome = Utils.CalculateOutCome(user.unitData.GetSkill(Skills.Intimidation) + roll, 10 + target.unitData.GetWillSave());
+        AddLog("\n");
+
         FrightenedCondition condition = (FrightenedCondition)ScriptableObject.CreateInstance(typeof(FrightenedCondition));
         condition.duration = ConditionDuration.EndOfTurn;
         switch (outcome)
         {
             case (OutCome.CritSuccess):
+                AddLog($"{target.UnitName} is drastically demoralized\n");
                 condition.conditionLevel = 2;
                 target.AddCondition(condition);
                 break;
             case (OutCome.Success):
+                AddLog($"{target.UnitName} is demoralized\n");
                 condition.conditionLevel = 1;
                 target.AddCondition(condition);
                 break;
             case (OutCome.Fail):
             case (OutCome.CritFail):
-                MenuManager.Instance.AddLog("You failed to scare the enemy, try again.\n");
+                AddLog("You failed to scare the enemy, try again.\n");
                 break;
         }
         user.UpdateTurns(1);
@@ -131,18 +161,26 @@ public class Actions : MonoBehaviour
         var target = selectedTile.OccupiedUnit;
         if (target == null)
             return;
-        var outcome = Utils.CalculateOutCome(user.unitData.GetSkill(Skills.Arcana) + Utils.CheckRoll(), 10 + target.unitData.GetSkill(Skills.Deception));
+        AddLog($"{user.UnitName} tries to remember information about {target.UnitName}\n");
+
+        AddLog($"{user.unitData.GetSkill(Skills.Arcana)}(Arcana) +");
+        int roll = Utils.CheckRoll();
+        AddLog($" = {user.unitData.GetSkill(Skills.Arcana) + roll}\n");
+        var outcome = Utils.CalculateOutCome(user.unitData.GetSkill(Skills.Arcana) + roll, 10 + target.unitData.GetSkill(Skills.Deception));
+        AddLog("\n");
+
         RevealedInfoCondition condition = (RevealedInfoCondition)ScriptableObject.CreateInstance(typeof(RevealedInfoCondition));
         condition.duration = ConditionDuration.Custom;
         switch (outcome)
         {
             case (OutCome.CritSuccess):
             case (OutCome.Success):
+                AddLog($"{user.UnitName} remember some information about {target.UnitName}\n");
                 target.AddCondition(condition);
                 break;
             case (OutCome.Fail):
             case (OutCome.CritFail):
-                MenuManager.Instance.AddLog("You failed to get knowledge, try again.\n");
+                AddLog("You failed to get knowledge, try again.\n");
                 break;
         }
         user.UpdateTurns(1);
@@ -170,5 +208,10 @@ public class Actions : MonoBehaviour
         // Wait for player to select a tile and then move the character to the selected tile.
         StartCoroutine(WaitForPlayerToSelect(tiles, action));
 
+    }
+
+    private void AddLog(string log)
+    {
+        MenuManager.Instance.AddLog(log);
     }
 }

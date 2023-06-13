@@ -7,6 +7,12 @@ public class FatalTrait : ScriptableWeaponTrait
 {
     public override int GetCritSuccessDamage(BaseUnit user)
     {
-        return DamageDice() + DamageDice() + 2 * user.unitData.GetStat(Abilities.Strength);
+        MenuManager.Instance.AddLog($"Damage:");
+        int dmg1 = DamageDice();
+        MenuManager.Instance.AddLog(" +");
+        int dmg2 = DamageDice();
+        MenuManager.Instance.AddLog($" + 2*{user.unitData.GetStat(Abilities.Strength)}(str)");
+        MenuManager.Instance.AddLog($" = {dmg1 + dmg2 + 2 * user.unitData.GetStat(Abilities.Strength) }\n");
+        return dmg1 + dmg2 + 2 * user.unitData.GetStat(Abilities.Strength);
     }
 }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -82,12 +81,14 @@ public class WeaponLogic : ItemLogic
     {
         // Add the attack log to the menu.
         MenuManager.Instance.AddLog($"{user.UnitName} attacked {target.UnitName}\n");
+        user.CharacterAttackCounterIncrease();
 
         // Calculate the outcome of the attack using the weapon's attack roll and the target's armor class.
         int roll = weaponData.GetAttackRoll(user);
         if (roll == -1)
             return;
         var outCome = Utils.CalculateOutCome(roll, target.unitData.GetAC());
+        MenuManager.Instance.AddLog("\n");
 
         // Determine the damage dealt based on the outcome of the attack.
         int damage;
@@ -110,7 +111,7 @@ public class WeaponLogic : ItemLogic
 
         // Apply the damage to the target and increase the user's attack counter
         target.TakeDamage(damage);
-        user.CharacterAttackCounterIncrease();
+        
         user.UpdateTurns(weaponData.GetNumOfActions());
     }
 }

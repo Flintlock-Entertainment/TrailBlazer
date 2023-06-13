@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShieldLogic : ItemLogic
@@ -21,6 +19,8 @@ public class ShieldLogic : ItemLogic
 
     private void use(BaseUnit user, ScriptableItem itemData)
     {
+        if (user.unitData is ShieldRaisedCondition)
+            return;
         shieldData = (ScriptableWearableItem)itemData;
         ShieldRaisedCondition condition = (ShieldRaisedCondition)ScriptableObject.CreateInstance(typeof(ShieldRaisedCondition));
         condition.shield = shieldData;

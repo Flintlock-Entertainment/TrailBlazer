@@ -10,7 +10,7 @@ public class Utils
         return () =>
         {
             int roll = UnityEngine.Random.Range(1, d + 1);
-            MenuManager.Instance.AddLog($"rolled 1d{d}: {roll}\n");
+            MenuManager.Instance.AddLog($" {roll}(1d{d})");
             return roll;
         };
     }
@@ -44,16 +44,16 @@ public class Utils
         switch (roll - DC)
         {
             case int n when n >= 10:
-                MenuManager.Instance.AddLog("Crit success!\n");
+                MenuManager.Instance.AddLog(" Crit success!");
                 return OutCome.CritSuccess;
             case int n when n >= 0:
-                MenuManager.Instance.AddLog("Success!\n");
+                MenuManager.Instance.AddLog(" Success!");
                 return OutCome.Success;
             case int n when n > -10:
-                MenuManager.Instance.AddLog("Fail!\n");
+                MenuManager.Instance.AddLog(" Fail!");
                 return OutCome.Fail;
             default:
-                MenuManager.Instance.AddLog("Crit fail!\n");
+                MenuManager.Instance.AddLog("Crit fail!");
                 return OutCome.CritFail;
         }
     }

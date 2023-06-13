@@ -125,7 +125,7 @@ public class CharacterCreationManager : MonoBehaviour
 
     private IEnumerator WaitForCharacterDataToUpdate(ScriptableUnit character)
     {
-        while (character.GetCurrentHP() != character.GetHP())
+        while (character.GetStat(Abilities.Constitution) != numCon && character.GetCurrentHP() != character.GetHP())
             yield return null;
         GameManager.Instance.LoadScene("MainMap");
     }

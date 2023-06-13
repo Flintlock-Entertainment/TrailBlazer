@@ -32,6 +32,7 @@ public class BaseUnit : MonoBehaviour
         Turns -= update;
         if(Turns == 0)
             RemoveConditions(ConditionDuration.EndOfTurn, typeof(ScriptableCondition));
+        MenuManager.Instance.AddLog("\n");
     }
 
     public void CharacterAttackCounterIncrease()

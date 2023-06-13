@@ -17,15 +17,30 @@ public abstract class ScriptableWeapon : ScriptableItem
 
     public virtual int GetAttackRoll(BaseUnit user)
     {
-        return Utils.CheckRoll() + user.unitData.GetStat(Abilities.Strength) + user.unitData.GetWeaponProf() + GetMultipleAttackPenalty(user.numOfAttacks);
+        MenuManager.Instance.AddLog($"{user.unitData.GetStat(Abilities.Strength)}(str) + {user.unitData.GetWeaponProf()}(prof) + {GetMultipleAttackPenalty(user.numOfAttacks)} +");
+        int roll = Utils.CheckRoll();
+        MenuManager.Instance.AddLog($" = {roll + user.unitData.GetStat(Abilities.Strength) + user.unitData.GetWeaponProf() + GetMultipleAttackPenalty(user.numOfAttacks) }\n");
+
+        return roll + user.unitData.GetStat(Abilities.Strength) + user.unitData.GetWeaponProf() + GetMultipleAttackPenalty(user.numOfAttacks);
     }
     public virtual int GetCritSuccessDamage(BaseUnit user)
     {
-        return DamageDice() + DamageDice() + 2 * user.unitData.GetStat(Abilities.Strength);
+        MenuManager.Instance.AddLog($"Damage:");
+        int dmg1 = DamageDice();
+        MenuManager.Instance.AddLog(" +");
+        int dmg2 = DamageDice();
+        MenuManager.Instance.AddLog($" + 2*{user.unitData.GetStat(Abilities.Strength)}(str)");
+        MenuManager.Instance.AddLog($" = {dmg1 + dmg2 + 2 * user.unitData.GetStat(Abilities.Strength) }\n");
+
+        return dmg1 + dmg2 + 2 * user.unitData.GetStat(Abilities.Strength);
     }
     public virtual int GetSuccessDamage(BaseUnit user)
     {
-        return DamageDice() + user.unitData.GetStat(Abilities.Strength);
+        MenuManager.Instance.AddLog($"Damage:");
+        int dmg1 = DamageDice();
+        MenuManager.Instance.AddLog($" + {user.unitData.GetStat(Abilities.Strength)}(str)");
+        MenuManager.Instance.AddLog($" = {dmg1 + user.unitData.GetStat(Abilities.Strength) }\n");
+        return dmg1 + user.unitData.GetStat(Abilities.Strength);
     }
     public virtual int GetCritFailDamage(BaseUnit user)
     {
