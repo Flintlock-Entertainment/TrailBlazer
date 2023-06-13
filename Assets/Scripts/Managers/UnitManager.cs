@@ -47,6 +47,7 @@ public class UnitManager : MonoBehaviour
         // Instantiate the character prefab.
         Character = Instantiate(randomPrefab);
 
+        Character.init();
         Character.RevealInfo();
 
         // Get a random spawn tile.
