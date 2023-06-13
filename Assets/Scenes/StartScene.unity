@@ -859,13 +859,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The heroes who pushed the evil forces back and have gone into the Otherplane
-    to beat them once and for all have fallen and their souls were captured!!
+  m_text: 'The heroes who pushed the evil forces back beyond the portal and have
+    gone into the Otherplane to beat them once and for all have fallen and their
+    souls were captured!!
 
 
-    It''s
-    up to you, to brave through the Otherplane and try and free their souls, empowering
-    yourself with their souls if you can...'
+    It''s up to you, to brave through the Otherplane
+    and try and free their souls, empowering yourself with their souls if you can...'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
