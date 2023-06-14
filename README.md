@@ -49,7 +49,7 @@ Some notable features:
 * Network Map - a network navigation map just like the one in Slay the Spire. 
 * Grid turn base combat - with infinate time to think you can use your precious 3 actions and navigate in the battlefield, attack and use various abilities to gain an advantage over your foes  
 * Random events - including a simple yet addictive card game.
-* enemies in many kinds from all realms of fantasy.
+* Enemies in many kinds from all realms of fantasy.
 
 for [formal-elements](formal-elements.md)
 
@@ -64,6 +64,7 @@ for [formal-elements](formal-elements.md)
 ## Acknowledgments
 
 Thanks to [silverua](https://github.com/silverua/slay-the-spire-map-in-unity) for his open source Slay the Spire map clone.
+Thanks to [kurtkaiser](https://github.com/kurtkaiser/Unity-Blackjack-Game-Tutorial) for his open source Blackjack game, for which we used the barebones as a basis for our mini game.
 
 
 
