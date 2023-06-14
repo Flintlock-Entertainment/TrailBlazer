@@ -168,6 +168,11 @@ public class ScriptableUnit : ScriptableObject
         return revealInfo;
     }
 
+    public virtual void SetRevealInfo(bool ToSet)
+    {
+        revealInfo = ToSet;
+    }
+
     public virtual string GetDescription()
     {
         string desc;

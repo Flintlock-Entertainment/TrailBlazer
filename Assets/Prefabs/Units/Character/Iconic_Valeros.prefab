@@ -101,3 +101,11 @@ MonoBehaviour:
   OccupiedTile: {fileID: 0}
   Faction: 0
   unitData: {fileID: 11400000, guid: ec97c5b5ef1837644a163d79d9e58c5c, type: 2}
+  HitList:
+  - {fileID: 8300000, guid: ab5afdc1d9d75124ab2de1480c410d4b, type: 3}
+  - {fileID: 8300000, guid: e11755b97be1f624d9ff6ff351c4d516, type: 3}
+  - {fileID: 8300000, guid: 41fa7eb8be085c64ab955f35657f0dd7, type: 3}
+  - {fileID: 8300000, guid: 5808c5577aa479a458079d0fc33ecbe2, type: 3}
+  - {fileID: 8300000, guid: 94357433a3257d440a2d6e75a601d2c5, type: 3}
+  - {fileID: 8300000, guid: a769031e9340e0d47937285204d1ae3b, type: 3}
+  HitSoundEffect: {fileID: 0}

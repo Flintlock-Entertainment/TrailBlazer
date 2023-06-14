@@ -16,6 +16,7 @@ public class BaseUnit : MonoBehaviour
     public void init()
     {
         unitData.SetCurrentHP(unitData.GetHP());
+        unitData.SetRevealInfo(false);
     }
     public int Turns { get; protected set; } 
 

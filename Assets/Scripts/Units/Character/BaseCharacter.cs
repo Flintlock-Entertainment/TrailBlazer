@@ -9,6 +9,13 @@ It inherits from the BaseUnit class.
 public class BaseCharacter : BaseUnit
 {
     public Tile selectedTile => GridManager.Instance.selectedTile;
+    [SerializeField] private AudioClip[] HitList;
+    [SerializeField] private AudioSource HitSoundEffect;
+
+    /*void Start()
+    {
+        HitSoundEffect = GetComponent<AudioSource>();
+    }*/
 
     private void OnDestroy()
     {
@@ -22,6 +29,13 @@ public class BaseCharacter : BaseUnit
     //Override the TakeDamage function from BaseUnit to include updating the menu.
     public override void TakeDamage(int damage)
     {
+       /*if(damage != 0)
+        {
+            int rand = Random.Range(0, HitList.Length);
+            HitSoundEffect.clip = HitList[rand];
+            HitSoundEffect.PlayOneShot(HitSoundEffect.clip);
+        }*/
+       
         base.TakeDamage(damage);
         MenuManager.Instance.UpdateMenu(this);
     }

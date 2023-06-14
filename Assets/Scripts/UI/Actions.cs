@@ -76,10 +76,12 @@ public class Actions : MonoBehaviour
                 AddLog("\n");
                 target.TakeDamage(roll);
                 AddLog($"{target.UnitName} in now prone\n");
+                AddLog($"-2 to {target.UnitName} AC!\n");
                 target.AddCondition(condition);
                 break;
             case (OutCome.Success):
                 AddLog($"{target.UnitName} fell and is now prone\n");
+                AddLog($"-2 to {target.UnitName} AC!\n");
                 target.AddCondition(condition);
                 break;
             case (OutCome.Fail):
@@ -95,6 +97,7 @@ public class Actions : MonoBehaviour
                 else
                 {
                     MenuManager.Instance.AddLog(" and now prone\n");
+                    AddLog($"-2 to {user.UnitName} AC!\n");
                     user.AddCondition(condition);
                 }
                 break;
@@ -133,12 +136,14 @@ public class Actions : MonoBehaviour
         switch (outcome)
         {
             case (OutCome.CritSuccess):
-                AddLog($"{target.UnitName} is drastically demoralized\n");
+                AddLog($"{target.UnitName} is drastically demoralized.\n");
+                AddLog($"all {target.UnitName}'s saves, abillites, AC and skill receive -2 for a turn.\n");
                 condition.conditionLevel = 2;
                 target.AddCondition(condition);
                 break;
             case (OutCome.Success):
                 AddLog($"{target.UnitName} is demoralized\n");
+                AddLog($"all {target.UnitName}'s saves, abillites, AC and skills receive -1 for a turn.\n");
                 condition.conditionLevel = 1;
                 target.AddCondition(condition);
                 break;
