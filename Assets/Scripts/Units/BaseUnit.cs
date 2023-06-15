@@ -12,6 +12,10 @@ public class BaseUnit : MonoBehaviour
     public ScriptableUnit unitData;
     public Inventory inventory;
 
+    [SerializeField] public AudioClip[] HitList;
+    [SerializeField] protected AudioSource HitSoundEffect;
+
+
 
     public void init()
     {
